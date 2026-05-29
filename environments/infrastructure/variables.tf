@@ -16,7 +16,7 @@ variable "rds_vars" {
         username = string
         
         create_db_subnet_group = bool
-        vpc_security_group_ids = list(string)
+        # vpc_security_group_ids = list(string)
 
         description = string
     }))
