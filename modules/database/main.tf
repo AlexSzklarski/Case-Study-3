@@ -1,0 +1,29 @@
+## Relational Database Service (RDS) Resources
+module "rds_module" {
+    source = "terraform-aws-modules/rds/aws"
+    for_each = { for inst in var.rds_vars : inst.identifier => inst }
+
+    identifier = each.value.identifier
+
+    engine = each.value.engine
+    family = each.value.family
+    engine_version = each.value.engine_version
+    major_engine_version = each.value.major_engine_version
+
+    instance_class = each.value.instance_class
+    allocated_storage = each.value.allocated_storage
+    skip_final_snapshot = each.value.skip_final_snapshot
+
+    db_name = each.value.db_name
+    username = each.value.username
+    
+    create_db_subnet_group = each.value.create_db_subnet_group
+    subnet_ids = each.value.subnet_ids
+    
+    # vpc_security_group_ids = each.value.vpc_security_group_ids
+
+    tags = {
+        name = each.value.identifier
+        description = each.value.description
+    }
+}

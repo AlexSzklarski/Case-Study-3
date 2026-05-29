@@ -1,0 +1,41 @@
+name: "Okta CI/CD pipeline"
+
+on:
+    workflow_dispatch:
+    
+permissions:
+    contents: read
+
+jobs:
+    terraform:
+        name: "Okta Deploy"
+        runs-on: ubuntu-latest
+
+        env:
+          OKTA_ORG_NAME: ${{ secrets.ORG_NAME }}
+          OKTA_API_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          OKTA_API_PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
+          OKTA_API_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v4
+
+            - name: Terraform init
+              run: terraform init
+              working-directory: environments/dev/identity
+
+            - name: Terraform validate
+              run: terraform validate
+              working-directory: environments/dev/identity
+
+            - name: Terraform plan
+              run: terraform plan
+              working-directory: environments/dev/identity
+
+            - name: Terraform apply
+              run: terraform apply -auto-approve
+              working-directory: environments/dev/identity

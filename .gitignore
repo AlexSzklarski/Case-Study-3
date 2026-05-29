@@ -1,0 +1,11 @@
+## Identity Ignore
+environments/dev/identity/.terraform
+environments/dev/identity/.terraform.lock.hcl
+environments/dev/identity/terraform.tfstate
+environments/dev/identity/terraform.tfstate.backup
+
+## Infrastructure Ignore
+environments/dev/infrastructure/.terraform
+environments/dev/infrastructure/.terraform.lock.hcl
+environments/dev/infrastructure/terraform.tfstate
+environments/dev/infrastructure/terraform.tfstate.backup
