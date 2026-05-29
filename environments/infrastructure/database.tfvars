@@ -16,7 +16,6 @@ rds_vars = [
         username = "admindatabase"
     
         create_db_subnet_group = true
-        subnet_ids = data.database_subnets.ids
         # vpc_security_group_ids = 
 
         description = "Relational Database Service running PostgreSQL 18."

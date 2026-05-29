@@ -7,6 +7,7 @@ module "database" {
     source = "../../modules/database"
 
     rds_vars = var.rds_vars
+    subnet_ids = data.database_subnets.ids
 }
 
 module "network" {
