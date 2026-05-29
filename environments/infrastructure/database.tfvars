@@ -1,7 +1,7 @@
 ## Database Variable Values
 rds_vars = [
     {
-        identifier = "rds_database"
+        identifier = "rds-database"
 
         engine = "postgres"
         family = "postgres18"
