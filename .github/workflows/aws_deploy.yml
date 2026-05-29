@@ -39,7 +39,7 @@ jobs:
               working-directory: environments/infrastructure
 
             - name: Terraform plan
-              run: terraform plan 
+              run: terraform plan -var-file="compute.tfvars" -var-file="database.tfvars" -var-file="network.tfvars"
               working-directory: environments/infrastructure
 
             # - name: Terraform apply
