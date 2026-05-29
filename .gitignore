@@ -3,9 +3,13 @@ environments/dev/identity/.terraform
 environments/dev/identity/.terraform.lock.hcl
 environments/dev/identity/terraform.tfstate
 environments/dev/identity/terraform.tfstate.backup
+environments/dev/identity/compute.tfvars
+environments/dev/identity/database.tfvars
+environments/dev/identity/network.tfvars
 
 ## Infrastructure Ignore
 environments/dev/infrastructure/.terraform
 environments/dev/infrastructure/.terraform.lock.hcl
 environments/dev/infrastructure/terraform.tfstate
 environments/dev/infrastructure/terraform.tfstate.backup
+environments/dev/infrastructure/okta.tfvars

@@ -30,14 +30,8 @@ jobs:
 
             - name: Terraform init
               run: terraform init
-              working-directory: environments/dev/infrastructure
-
-            - name: remove broken helm resources
-              run: |
-                terraform state rm 'module.compute.helm_release.eks_monitoring["promtail"]'
-                terraform state rm 'module.compute.helm_release.eks_monitoring["prometheus"]'
-              working-directory: environments/dev/infrastructure
+              working-directory: environments/infrastructure
 
             - name: Terraform destroy
               run: terraform destroy -auto-approve
-              working-directory: environments/dev/infrastructure
+              working-directory: environments/infrastructure

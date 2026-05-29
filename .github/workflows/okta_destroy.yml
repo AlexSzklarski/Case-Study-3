@@ -30,8 +30,8 @@ jobs:
 
             - name: Terraform init
               run: terraform init
-              working-directory: environments/dev/identity
+              working-directory: environments/identity
 
             - name: Terraform destroy
               run: terraform destroy -auto-approve
-              working-directory: environments/dev/identity
+              working-directory: environments/identity

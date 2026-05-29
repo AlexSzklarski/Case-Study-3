@@ -32,16 +32,16 @@ jobs:
 
             - name: Terraform init
               run: terraform init
-              working-directory: environments/dev/infrastructure
+              working-directory: environments/infrastructure
 
             - name: Terraform validate
               run: terraform validate
-              working-directory: environments/dev/infrastructure
+              working-directory: environments/infrastructure
 
             - name: Terraform plan
               run: terraform plan 
-              working-directory: environments/dev/infrastructure
+              working-directory: environments/infrastructure
 
             # - name: Terraform apply
             #   run: terraform apply -auto-approve
-            #   working-directory: environments/dev/infrastructure
+            #   working-directory: environments/infrastructure

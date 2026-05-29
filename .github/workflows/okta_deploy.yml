@@ -26,16 +26,16 @@ jobs:
 
             - name: Terraform init
               run: terraform init
-              working-directory: environments/dev/identity
+              working-directory: environments/identity
 
             - name: Terraform validate
               run: terraform validate
-              working-directory: environments/dev/identity
+              working-directory: environments/identity
 
             - name: Terraform plan
               run: terraform plan
-              working-directory: environments/dev/identity
+              working-directory: environments/identity
 
             - name: Terraform apply
               run: terraform apply -auto-approve
-              working-directory: environments/dev/identity
+              working-directory: environments/identity
