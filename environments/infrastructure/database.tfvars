@@ -21,3 +21,15 @@ rds_vars = [
         description = "Relational Database Service running PostgreSQL 18."
     }
 ]
+
+s3_vars = [
+    {
+        bucket = "cicd-bucket-huby71"
+        versioning = {
+            enabled = true
+        }
+
+        name = "cicd-bucket"
+        description = "S3 bucket holding Terraform state file."
+    }
+]

@@ -8,6 +8,8 @@ module "database" {
 
     rds_vars = var.rds_vars
     subnet_ids = data.aws_subnets.database_subnets.ids
+
+    s3_vars = var.s3_vars
 }
 
 module "network" {

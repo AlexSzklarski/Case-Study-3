@@ -23,8 +23,8 @@ vpc_vars = [
         azs = ["eu-central-1a", "eu-central-1b"]
 
         public_subnets = []
-        private_subnets = ["10.1.1.0/16", "10.1.2.0/16"]
-        database_subnets = ["10.1.3.0/16", "10.1.4.0/16"]
+        private_subnets = ["10.1.1.0/24", "10.1.2.0/24"]
+        database_subnets = ["10.1.3.0/24", "10.1.4.0/24"]
         create_database_subnet_group = true
         
         enable_vpn_gateway = true
