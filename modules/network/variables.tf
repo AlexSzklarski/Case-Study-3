@@ -12,9 +12,6 @@ variable "vpc_vars" {
 
         enable_vpn_gateway = bool
 
-        enable_nat_gateway = bool
-        single_nat_gateway = bool
-
         description = string
     }))
 }

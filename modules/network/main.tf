@@ -14,9 +14,6 @@ module "vpc_module" {
     
     enable_vpn_gateway = each.value.enable_vpn_gateway
 
-    enable_nat_gateway = each.value.enable_nat_gateway
-    single_nat_gateway = each.value.single_nat_gateway
-
     tags = {
         name = each.value.name
         description = each.value.description

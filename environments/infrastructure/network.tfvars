@@ -12,9 +12,6 @@ vpc_vars = [
 
         enable_vpn_gateway = true
 
-        enable_nat_gateway = false
-        single_nat_gateway = false
-
         description = "Hub VPC allowing inbound via ALB and TGW."
     },
     {
@@ -28,9 +25,6 @@ vpc_vars = [
         create_database_subnet_group = true
         
         enable_vpn_gateway = true
-
-        enable_nat_gateway = true
-        single_nat_gateway = true
 
         description = "Spoke VPC hosting a PostgreSQL database and a Kubernetes cluster."
     }
