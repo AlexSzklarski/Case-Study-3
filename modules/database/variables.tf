@@ -24,5 +24,5 @@ variable "rds_vars" {
 }
 
 variable "subnet_ids" {
-    type = string
+    type = list(string)
 }
