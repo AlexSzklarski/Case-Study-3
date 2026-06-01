@@ -4,7 +4,11 @@
 
 ## Network Module Datablocks
 data "aws_vpc" "spoke_vpc" {
-    id = module.network.id_spoke_vpc
+    filter {
+        name = "tag:Name"
+        values = ["spoke_vpc"]
+    }
+
     depends_on = [ module.network ]
 }
 
@@ -15,7 +19,7 @@ data "aws_subnets" "private_subnets" {
     }
 
     filter {
-        name   = "tag:Type"
+        name = "tag:Type"
         values = ["private"]
     }
 
@@ -29,7 +33,7 @@ data "aws_subnets" "database_subnets" {
     }
 
     filter {
-        name   = "tag:Type"
+        name = "tag:Type"
         values = ["database"]
     }
 
@@ -38,7 +42,9 @@ data "aws_subnets" "database_subnets" {
 
 data "aws_security_group" "rds_sg" {
     filter {
-        name   = "tag:Type"
+        name = "tag:Type"
         values = ["rds_sg"]
     }
+
+    depends_on = [ module.network ]
 }
