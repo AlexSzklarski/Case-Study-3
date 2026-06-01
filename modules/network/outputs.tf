@@ -12,10 +12,3 @@ output "id_db_spoke_subnet" {
 
     description = "Id of the private subnets on the spoke VPC."
 }
-
-output "id_db_security_group" {
-    value = module.security_groups.security_group_id[2]
-    depends_on = [ module.security_groups ]
-
-    description = "Id of the spoke VPC."
-}
