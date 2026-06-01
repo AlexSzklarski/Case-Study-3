@@ -9,7 +9,6 @@ data "aws_vpc" "spoke_vpc" {
         values = ["spoke_vpc"]
     }
 
-    depends_on = [ module.network ]
 }
 
 data "aws_subnets" "private_subnets" {
