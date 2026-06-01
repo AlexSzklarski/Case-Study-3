@@ -8,8 +8,6 @@ data "aws_vpc" "spoke_vpc" {
         name = "tag:Name"
         values = ["spoke_vpc"]
     }
-
-    depends_on = [ module.network ]
 }
 
 data "aws_subnets" "private_subnets" {
@@ -22,8 +20,6 @@ data "aws_subnets" "private_subnets" {
         name = "tag:Type"
         values = ["private"]
     }
-
-    depends_on = [ module.network ]
 }
 
 data "aws_subnets" "database_subnets" {
@@ -36,15 +32,11 @@ data "aws_subnets" "database_subnets" {
         name = "tag:Type"
         values = ["database"]
     }
-
-    depends_on = [ module.network ]
 }
 
-# data "aws_security_group" "rds_sg" {
-#     filter {
-#         name = "tag:Type"
-#         values = ["rds_sg"]
-#     }
-
-#     depends_on = [ module.network ]
-# }
+data "aws_security_group" "rds_sg" {
+    filter {
+        name = "tag:Type"
+        values = ["rds_sg"]
+    }
+}

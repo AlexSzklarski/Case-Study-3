@@ -8,7 +8,7 @@ module "database" {
 
     rds_vars = var.rds_vars
     subnet_ids = data.aws_subnets.database_subnets.ids
-    rds_sg_id = [module.network.sg_output]
+    rds_sg_id = [data.aws_security_group.rds_sg.id]
 
     s3_vars = var.s3_vars
 }

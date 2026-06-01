@@ -12,8 +12,3 @@ output "id_security_group" {
 
     description = "Id of the spoke VPC."
 }
-
-## Security Group Output
-output "sg_output" {
-    value = module.security_groups.rds_sg.security_group_id
-}
