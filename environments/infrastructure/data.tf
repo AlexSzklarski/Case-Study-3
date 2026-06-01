@@ -4,10 +4,7 @@
 
 ## Network Module Datablocks
 data "aws_vpc" "spoke_vpc" {
-    filter {
-        name = "tag:Name"
-        values = [ "spoke_vpc" ]
-    }
+    id = module.network.id_spoke_vpc
 }
 
 data "aws_subnets" "private_subnets" {

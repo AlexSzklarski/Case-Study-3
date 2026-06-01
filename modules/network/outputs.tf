@@ -6,8 +6,15 @@ output "id_spoke_vpc" {
     description = "Id of the spoke VPC."
 }
 
-output "id_security_group" {
-    value = module.security_groups.security_group_id
+output "id_db_spoke_subnet" {
+    value = module.vpc_module.spoke_vpc.database_subnets
+    depends_on = [ module.vpc_module ]
+
+    description = "Id of the private subnets on the spoke VPC."
+}
+
+output "id_db_security_group" {
+    value = module.security_groups.security_group_id[2]
     depends_on = [ module.security_groups ]
 
     description = "Id of the spoke VPC."
