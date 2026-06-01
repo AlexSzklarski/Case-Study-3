@@ -35,6 +35,7 @@ variable "s3_vars" {
 variable "vpc_vars" {
     type = list(object({
         name = string
+        type = string
         cidr = string
         azs = list(string)
 

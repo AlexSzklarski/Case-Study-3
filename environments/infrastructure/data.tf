@@ -6,9 +6,8 @@
 data "aws_vpc" "spoke_vpc" {
     filter {
         name = "tag:Name"
-        values = ["spoke_vpc"]
+        values = [ for vpc in var.vpc_vars : vpc.name if vpc.type == "spoke" ]
     }
-
 }
 
 data "aws_subnets" "private_subnets" {
