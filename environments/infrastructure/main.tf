@@ -19,4 +19,20 @@ module "network" {
     vpc_vars = var.vpc_vars
     sg_vars = var.sg_vars
     vpc_id = data.aws_vpc.spoke_vpc.id
+
+    tgw_vars = var.tgw_vars
+    tgw_attach = [
+        {
+            name = "hub_attachement"
+            vpc_id = data.aws_vpc.hub_vpc.id
+            subnet_ids = [data.aws_subnets.public_subnets]
+            destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
+        },
+        {
+            name = "spoke_attachement"
+            vpc_id = data.aws_vpc.spoke_vpc.id
+            subnet_ids = [data.aws_subnets.private_subnets]
+            destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
+        }
+    ]
 }

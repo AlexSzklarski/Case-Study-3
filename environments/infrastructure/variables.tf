@@ -60,3 +60,13 @@ variable "sg_vars" {
         description = string 
     }))
 }
+
+variable "tgw_vars" {
+    type = list(object({
+        name = string
+        
+        share_tgw = bool
+
+        description = string
+    }))
+}

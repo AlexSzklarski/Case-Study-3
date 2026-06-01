@@ -173,3 +173,16 @@ sg_vars = [
         description = "Relational Database Service (RDS) security group."
     }
 ]
+
+## Application Load Balancer (ALB) Variable Values
+
+## Transit GateWay Variable Values
+tgw_vars = [
+    {
+        name = "hub_spoke_tgw"
+
+        share_tgw = false
+        
+        description = "Transit GateWay connecting the hub and spoke VPCs together."
+    }
+]

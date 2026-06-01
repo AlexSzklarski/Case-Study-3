@@ -36,3 +36,23 @@ module "security_groups" {
         description = each.value.description
     }
 }
+
+## Application Load Balancer (ALB) Resources
+
+## Transit GateWay (TGW) Resources
+module "tgw" {
+    for_each = { for inst in var.tgw_vars : inst.name => inst }
+    source  = "terraform-aws-modules/transit-gateway/aws"
+
+    name = each.value.name
+
+    vpc_attachments = each.value.vpc_attachments
+    share_tgw = each.value.share_tgw
+
+    tags = {
+        name = each.value.name
+        description = each.value.description
+    }
+}
+
+## Route53 Resources

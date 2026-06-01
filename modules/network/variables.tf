@@ -31,3 +31,18 @@ variable "sg_vars" {
 variable "vpc_id" {
     type = string
 }
+
+## Transit GateWay (TGW) Variables
+variable "tgw_vars" {
+    type = list(object({
+        name = string
+
+        share_tgw = bool
+
+        description = string
+    }))
+}
+
+variable "tgw_attach" {
+    type = list(map(string))
+}
