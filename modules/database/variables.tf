@@ -27,6 +27,10 @@ variable "subnet_ids" {
     type = list(string)
 }
 
+variable "rds_sg_id" {
+    type = list(string)
+}
+
 ## S3 Bucket Variables
 variable "s3_vars" {
     type = list(object({

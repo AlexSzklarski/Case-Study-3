@@ -30,18 +30,12 @@ vpc_vars = [
     }
 ]
 
-    # ## Security Group Locals
-    # eks_ports = [53, 443, 3000, 3100, 5432, 6443, 9080, 9090]
-    # rds_ports = [5432]
-    # ec2_ports = [53, 80, 443, 3000, 3100, 5432, 6443, 9080, 9090]
-
 ## Security Group Variable Values
 sg_vars = [
     {
         name = "alb_sg"
         vpc_id = data.spoke_vpc.id
 
-<<<<<<< Updated upstream
         ingress_with_cidr_blocks = [
             {
                 from_port = 80
@@ -74,24 +68,32 @@ sg_vars = [
         vpc_id = data.spoke_vpc.id
 
         ingress_with_cidr_blocks = [
+            {
+                from_port = 22
+                to_port = 22
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 22 for SSH."
+            },
             {
                 from_port = 53
                 to_port = 53
                 protocol = "tcp"
-                description = "Open port 80 for HTTP."
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 53 for DNS."
             },
             {
                 from_port = 80
                 to_port = 80
                 protocol = "tcp"
-                source_security_group_id = 
+                cidr_blocks = "0.0.0.0/0"
                 description = "Open port 80 for HTTP."
             },
             {
                 from_port = 443
                 to_port = 443
                 protocol = "tcp"
-                source_security_group_id = 
+                cidr_blocks = "0.0.0.0/0"
                 description = "Open port 443 for HTTPS."
             }
         ]
@@ -115,7 +117,7 @@ sg_vars = [
                 from_port = 5432
                 to_port = 5432
                 protocol = "tcp"
-                source_security_group_id = 
+                cidr_blocks = "0.0.0.0/0"
                 description = "Open port 5432 for PostgreSQL."
             }
         ]
@@ -125,34 +127,9 @@ sg_vars = [
                 from_port = 5432
                 to_port = 5432
                 protocol = "tcp"
-                source_security_group_id = 
+                cidr_blocks = "0.0.0.0/0"
                 description = "Open port 5432 for PostgreSQL."
             }
         ]
-
-=======
-        ingress_with_cidr_blocks = 
-        egress_with_cidr_blocks = 
-
-        description = "Application Load Balancer (ALB) security group."
-    },
-    {
-        name = "eks_sg"
-        vpc_id = data.spoke_vpc.id
-
-        ingress_with_cidr_blocks = 
-        egress_with_cidr_blocks = 
-
-        description = "Elastic Kubernetes Service (EKS) security group."
-    },
-    {
-        name = "rds_sg"
-        vpc_id = data.spoke_vpc.id
-
-        ingress_with_cidr_blocks = 
-        egress_with_cidr_blocks = 
-
->>>>>>> Stashed changes
-        description = "Relational Database Service (RDS) security group."
     }
 ]

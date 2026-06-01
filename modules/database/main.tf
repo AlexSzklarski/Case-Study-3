@@ -20,7 +20,7 @@ module "rds_module" {
     create_db_subnet_group = each.value.create_db_subnet_group
     subnet_ids = var.subnet_ids
 
-    # vpc_security_group_ids = each.value.vpc_security_group_ids
+    vpc_security_group_ids = var.rds_sg_id
 
     tags = {
         name = each.value.identifier
