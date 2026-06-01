@@ -17,8 +17,6 @@ data "aws_subnets" "public_subnets" {
         name = "tag:Type"
         values = ["public"]
     }
-
-    depends_on = [ module.network ]
 }
 
 
@@ -36,8 +34,6 @@ data "aws_subnets" "private_subnets" {
         name = "tag:Type"
         values = ["private"]
     }
-
-    depends_on = [ module.network ]
 }
 
 data "aws_subnets" "database_subnets" {
@@ -50,8 +46,6 @@ data "aws_subnets" "database_subnets" {
         name = "tag:Type"
         values = ["database"]
     }
-
-    depends_on = [ module.network ]
 }
 
 data "aws_security_group" "rds_sg" {
@@ -59,6 +53,4 @@ data "aws_security_group" "rds_sg" {
         name = "tag:Type"
         values = ["rds_sg"]
     }
-
-    depends_on = [ module.network ]
 }
