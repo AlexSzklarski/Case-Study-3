@@ -46,7 +46,7 @@ module "tgw" {
 
     name = each.value.name
 
-    vpc_attachments = each.value.vpc_attachments
+    vpc_attachments = var.tgw_attach
     share_tgw = each.value.share_tgw
 
     tags = {
