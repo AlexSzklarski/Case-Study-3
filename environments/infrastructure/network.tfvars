@@ -56,9 +56,18 @@ sg_vars = [
 
         egress_with_cidr_blocks = [
             {
-                protocol = "-1"
+                from_port = 80
+                to_port = 80
+                protocol = "tcp"
                 cidr_blocks = "0.0.0.0/0"
-                description = "Open all ports for egress."
+                description = "Open port 80 for HTTP."
+            },
+            {
+                from_port = 443
+                to_port = 443
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 443 for HTTPS."
             }
         ]
 
@@ -100,9 +109,39 @@ sg_vars = [
 
         egress_with_cidr_blocks = [
             {
-                protocol = "-1"
+                from_port = 22
+                to_port = 22
+                protocol = "tcp"
                 cidr_blocks = "0.0.0.0/0"
-                description = "Open all ports for egress."
+                description = "Open port 22 for SSH."
+            },
+            {
+                from_port = 53
+                to_port = 53
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 53 for DNS."
+            },
+            {
+                from_port = 80
+                to_port = 80
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 80 for HTTP."
+            },
+            {
+                from_port = 443
+                to_port = 443
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 443 for HTTPS."
+            },
+            {
+                from_port = 5432
+                to_port = 5432
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 5432 for PostgreSQL."
             }
         ]
 
