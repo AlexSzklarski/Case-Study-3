@@ -52,7 +52,6 @@ variable "vpc_vars" {
 variable "sg_vars" {
     type = list(object({
         name = string
-        vpc_id = string
 
         ingress_with_cidr_blocks = list(map(string))
         egress_with_cidr_blocks = list(map(string))

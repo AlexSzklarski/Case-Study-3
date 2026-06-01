@@ -34,7 +34,6 @@ vpc_vars = [
 sg_vars = [
     {
         name = "alb_sg"
-        vpc_id = data.spoke_vpc.id
 
         ingress_with_cidr_blocks = [
             {
@@ -65,7 +64,6 @@ sg_vars = [
     },
     {
         name = "eks_sg"
-        vpc_id = data.spoke_vpc.id
 
         ingress_with_cidr_blocks = [
             {
@@ -110,7 +108,6 @@ sg_vars = [
     },
     {
         name = "rds_sg"
-        vpc_id = data.spoke_vpc.id
 
         ingress_with_cidr_blocks = [
             {
