@@ -44,7 +44,7 @@ variable "tgw_vars" {
 }
 
 variable "tgw_attach" {
-    type = list(object({
+    type = map(object({
         name = string
         vpc_id = string
         subnet_ids = list(string)
