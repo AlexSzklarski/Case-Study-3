@@ -25,13 +25,13 @@ module "network" {
         {
             name = "hub_attachement"
             vpc_id = data.aws_vpc.hub_vpc.id
-            subnet_ids = data.aws_subnets.public_subnets
+            subnet_ids = data.aws_subnets.public_subnets.ids
             destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
         },
         {
             name = "spoke_attachement"
             vpc_id = data.aws_vpc.spoke_vpc.id
-            subnet_ids = data.aws_subnets.private_subnets
+            subnet_ids = data.aws_subnets.private_subnets.ids
             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
         }
     ]
