@@ -128,5 +128,7 @@ sg_vars = [
                 description = "Open port 5432 for PostgreSQL."
             }
         ]
+
+        description = "Relational Database Service (RDS) security group."
     }
 ]
