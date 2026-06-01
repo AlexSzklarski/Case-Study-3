@@ -18,5 +18,5 @@ module "network" {
 
     vpc_vars = var.vpc_vars
     sg_vars = var.sg_vars
-    vpc_id = data.spoke_vpc.id
+    vpc_id = data.aws_vpc.spoke_vpc.id
 }
