@@ -6,7 +6,7 @@
 data "aws_vpc" "spoke_vpc" {
     filter {
         name = "tag:Name"
-        values = [ for vpc in var.vpc_vars : vpc.name if vpc.type == "spoke" ]
+        values = [ "spoke_vpc" ]
     }
 }
 
