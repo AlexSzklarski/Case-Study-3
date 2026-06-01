@@ -40,11 +40,11 @@ data "aws_subnets" "database_subnets" {
     depends_on = [ module.network ]
 }
 
-data "aws_security_group" "rds_sg" {
-    filter {
-        name = "tag:Type"
-        values = ["rds_sg"]
-    }
+# data "aws_security_group" "rds_sg" {
+#     filter {
+#         name = "tag:Type"
+#         values = ["rds_sg"]
+#     }
 
-    depends_on = [ module.network ]
-}
+#     depends_on = [ module.network ]
+# }
