@@ -41,6 +41,7 @@ sg_vars = [
         name = "alb_sg"
         vpc_id = data.spoke_vpc.id
 
+<<<<<<< Updated upstream
         ingress_with_cidr_blocks = [
             {
                 from_port = 80
@@ -129,6 +130,29 @@ sg_vars = [
             }
         ]
 
+=======
+        ingress_with_cidr_blocks = 
+        egress_with_cidr_blocks = 
+
+        description = "Application Load Balancer (ALB) security group."
+    },
+    {
+        name = "eks_sg"
+        vpc_id = data.spoke_vpc.id
+
+        ingress_with_cidr_blocks = 
+        egress_with_cidr_blocks = 
+
+        description = "Elastic Kubernetes Service (EKS) security group."
+    },
+    {
+        name = "rds_sg"
+        vpc_id = data.spoke_vpc.id
+
+        ingress_with_cidr_blocks = 
+        egress_with_cidr_blocks = 
+
+>>>>>>> Stashed changes
         description = "Relational Database Service (RDS) security group."
     }
 ]
