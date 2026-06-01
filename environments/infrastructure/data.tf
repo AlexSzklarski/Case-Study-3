@@ -35,3 +35,7 @@ data "aws_subnets" "database_subnets" {
 
     depends_on = [ module.network ]
 }
+
+data "aws_security_group" "name" {
+  
+}

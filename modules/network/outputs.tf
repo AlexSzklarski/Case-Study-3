@@ -5,3 +5,10 @@ output "id_spoke_vpc" {
 
     description = "Id of the spoke VPC."
 }
+
+output "id_security_group" {
+    value = module.security_groups.security_group_id
+    depends_on = [ module.security_groups ]
+
+    description = "Id of the spoke VPC."
+}
