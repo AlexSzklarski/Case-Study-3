@@ -41,6 +41,4 @@ data "aws_security_group" "rds_sg" {
         name   = "tag:Type"
         values = ["rds_sg"]
     }
-
-    depends_on = [ module.network ]
 }
