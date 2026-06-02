@@ -48,7 +48,7 @@ variable "listener_vars" {
     type = map(object({
         port = number
         protocol = string
-        forward = map(any)
+        forward = map(string)
     }))
 }
 
