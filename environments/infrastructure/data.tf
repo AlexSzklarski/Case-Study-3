@@ -7,7 +7,10 @@ data "aws_eks_cluster" "eks_cluster" {
 
 ## Network Module Datablocks
 data "aws_vpc" "hub_vpc" {
-    id = module.network.id_hub_vpc
+    filter {
+      name = "vpc-id"
+      values = [ module.network.id_hub_vpc ]
+    }
 }
 
 data "aws_subnets" "public_subnets" {
@@ -23,7 +26,10 @@ data "aws_subnets" "public_subnets" {
 }
 
 data "aws_vpc" "spoke_vpc" {
-    id = module.network.id_spoke_vpc
+    filter {
+      name = "vpc-id"
+      values = [ module.network.id_spoke_vpc ]
+    }
 }
 
 data "aws_subnets" "private_subnets" {
