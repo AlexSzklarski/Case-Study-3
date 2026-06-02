@@ -37,6 +37,8 @@ variable "alb_vars" {
     type = list(object({
         name = string
 
+        vpc_id = string
+        
         create_security_group = bool
         security_groups = list(string)
         enable_deletion_protection = bool
