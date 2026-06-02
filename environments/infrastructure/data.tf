@@ -49,24 +49,3 @@ data "aws_subnets" "database_subnets" {
         values = ["database"]
     }
 }
-
-data "aws_security_group" "eks_sg" {
-    filter {
-        name = "tag:Type"
-        values = ["eks_sg"]
-    }
-}
-
-data "aws_security_group" "rds_sg" {
-    filter {
-        name = "tag:Type"
-        values = ["rds_sg"]
-    }
-}
-
-data "aws_security_group" "alb_sg" {
-    filter {
-        name = "tag:Type"
-        values = ["alb_sg"]
-    }
-}
