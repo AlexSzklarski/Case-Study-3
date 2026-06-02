@@ -63,3 +63,11 @@ data "aws_security_group" "rds_sg" {
     depends_on = [ module.network ]
 }
 
+data "aws_security_group" "eks_sg" {
+    filter {
+        name = "tag:Type"
+        values = ["eks_sg"]
+    }
+    
+    depends_on = [ module.network ]
+}

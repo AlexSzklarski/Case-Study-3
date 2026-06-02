@@ -6,10 +6,10 @@ module "compute" {
             name = "eks_cluster"
             kubernetes_version = "1.35"
 
-            vpc_id = module.network.spoke_vpc_id
-            subnet_ids = [module.network.private_subnet_id_0, module.network.private_subnet_id_1]
+            vpc_id = data.aws_vpc.spoke_vpc
+            subnet_ids = [data.aws_subnets.private_subnets]
 
-            node_security_group_id = module.network.eks_security_group_id
+            node_security_group_id = data.aws_security_group.eks_sg
             enable_cluster_creator_admin_permissions = true
             eks_managed_node_groups = {
                 node-0 = {
@@ -20,7 +20,7 @@ module "compute" {
                     instance_types = ["t3.medium"]
                     create_access_entry = true
 
-                    subnet_ids = [module.network.private_subnet_id_0]
+                    subnet_ids = [data.aws_subnets.private_subnets]
 
                     min_size = 1
                     max_size = 2
