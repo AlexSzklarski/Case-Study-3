@@ -59,6 +59,7 @@ module "network" {
             port = 80
             protocol = "HTTP"
             target_type = "ip"
+            target_id = module.network.eks_name
             availability_zone = "eu-central-1a"
 
             health_check = {

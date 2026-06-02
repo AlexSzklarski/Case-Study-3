@@ -1,8 +1,3 @@
-## Compute Module Datablocks
-data "aws_eks_cluster" "eks_cluster" {
-    name = module.compute.eks_name
-}
-
 ## Database Module Datablocks
 
 ## Network Module Datablocks
