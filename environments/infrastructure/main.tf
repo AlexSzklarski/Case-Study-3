@@ -1,71 +1,26 @@
 module "compute" {
     source = "../../modules/compute"
 
-    eks_vars = [
-        {
-            name = "eks_cluster"
-            kubernetes_version = "1.35"
+    eks_vars = var.eks_vars
+    vpc_id = data.aws_vpc.spoke_vpc
+    subnet_ids = [data.aws_subnets.private_subnets]
+    node_security_group_id = data.aws_security_group.eks_sg
+    eks_managed_node_groups = {
+        node-0 = {
+            name = "eks_node"
 
-            vpc_id = data.aws_vpc.spoke_vpc
+            create = true
+            kubernetes_version = "1.35"
+            instance_types = ["t3.medium"]
+            create_access_entry = true
+
             subnet_ids = [data.aws_subnets.private_subnets]
 
-            node_security_group_id = data.aws_security_group.eks_sg
-            enable_cluster_creator_admin_permissions = true
-            eks_managed_node_groups = {
-                node-0 = {
-                    name = "eks_node"
-
-                    create = true
-                    kubernetes_version = "1.35"
-                    instance_types = ["t3.medium"]
-                    create_access_entry = true
-
-                    subnet_ids = [data.aws_subnets.private_subnets]
-
-                    min_size = 1
-                    max_size = 2
-                    desired_size = 1
-                }
-            }
-
-            compute_config = {
-                enabled = false
-            }
-
-            iam_role_name = "eks-iam"
-            iam_role_additional_policies = {
-                AmazonEKSWorkerNodePolicy           = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-                AmazonEC2ContainerRegistryReadOnly  = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-                AmazonEKS_CNI_Policy                = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-            }
-
-            endpoint_public_access = true
-            access_entries = {
-                root = {
-                    principal_arn = "arn:aws:iam::476320587253:root"
-
-                    policy_associations = {
-                        root_assc = {
-                            policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-                            access_scope = {
-                                type = "cluster"
-                            }
-                        }
-                    }
-                }
-            }
-
-            addons = {
-                vpc-cni = {
-                    before_compute = true
-                }
-
-                kube-proxy = {}
-            }
-
-            description = "EKS cluster deployed on the spoke VPC."
+            min_size = 1
+            max_size = 2
+            desired_size = 1
         }
-    ]
+    }
 }
 
 module "database" {
@@ -125,6 +80,7 @@ module "network" {
     
     ## TGW Variables
     tgw_vars = var.tgw_vars
+
     tgw_attach = {
         hub_attachement = {
             vpc_id = data.aws_vpc.hub_vpc.id

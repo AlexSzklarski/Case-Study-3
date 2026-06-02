@@ -1,8 +1,6 @@
 ## Compute Module Datablocks
 data "aws_eks_cluster" "eks_cluster" {
     name = module.compute.eks_name
-
-    depends_on = [ module.compute ]
 }
 
 ## Database Module Datablocks

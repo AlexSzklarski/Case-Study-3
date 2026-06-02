@@ -1,4 +1,4 @@
-## Database Variable Values
+## Relational Database Service (RDS) Variable Values
 rds_vars = [
     {
         identifier = "rds-database"
@@ -21,6 +21,7 @@ rds_vars = [
     }
 ]
 
+## S3 Bucket Variable Values
 s3_vars = [
     {
         bucket = "cicd-bucket-huby71"

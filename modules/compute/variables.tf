@@ -4,12 +4,7 @@ variable "eks_vars" {
         name = string
         kubernetes_version = string
 
-        vpc_id = string
-        subnet_ids = list(string)
-
-        node_security_group_id = string
         enable_cluster_creator_admin_permissions = bool
-        eks_managed_node_groups = map(any)
 
         compute_config = map(string)
 
@@ -22,5 +17,34 @@ variable "eks_vars" {
         addons = map(any)
 
         description = string        
+    }))
+}
+
+variable "vpc_id" {
+    type = string
+}
+
+variable "subnet_ids" {
+    type = list(string)
+}
+
+variable "node_security_group_id" {
+    type = string
+}
+
+variable "eks_managed_node_groups" {
+    type = map(object({
+        name = string
+
+        create = bool
+        kubernetes_version = string
+        instance_types = list(string)
+        create_access_entry = bool
+
+        subnet_ids = list(string)
+
+        min_size = number
+        max_size = number
+        desired_size = number
     }))
 }
