@@ -25,7 +25,7 @@ variable "vpc_id" {
 }
 
 variable "subnet_ids" {
-    type = string
+    type = list(string)
 }
 
 variable "node_security_group_id" {
@@ -41,7 +41,7 @@ variable "eks_managed_node_groups" {
         instance_types = list(string)
         create_access_entry = bool
 
-        subnet_ids = string
+        subnet_ids = list(string)
 
         min_size = number
         max_size = number

@@ -46,7 +46,7 @@ variable "alb_vars" {
 }
 
 variable "listener_vars" {
-    type = map(object({
+    type = list(object({
         name = string
         port = number
         protocol = string
@@ -55,7 +55,7 @@ variable "listener_vars" {
 }
 
 variable "target_group_vars" {
-    type = map(object({
+    type = list(object({
         name = string
         port = number
         protocol = string
