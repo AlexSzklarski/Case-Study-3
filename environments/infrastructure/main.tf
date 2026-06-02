@@ -4,7 +4,7 @@ module "compute" {
     eks_vars = var.eks_vars
     vpc_id = data.aws_vpc.spoke_vpc.id
     subnet_ids = data.aws_subnets.private_subnets.ids
-    node_security_group_id = data.aws_security_group.eks_sg.id
+    node_security_group_id = "eks_sg"
     eks_managed_node_groups = {
         node-0 = {
             name = "eks_node"
@@ -29,7 +29,7 @@ module "database" {
     ## RDS Variables
     rds_vars = var.rds_vars
     subnet_ids = data.aws_subnets.database_subnets.ids
-    rds_sg_id = [data.aws_security_group.rds_sg.id]
+    rds_sg_id = ["rds_sg"]
 
     ## S3 Variables
     s3_vars = var.s3_vars
@@ -49,7 +49,7 @@ module "network" {
     alb_vars = var.alb_vars
     alb_subnets = module.network.id_pub_hub_subnet
     alb_vpc_id = data.aws_vpc.hub_vpc.id
-    alb_security_group = [data.aws_security_group.alb_sg.id]
+    alb_security_group = ["alb_sg"]
 
     target_group_vars = {
         nginx_target = {
