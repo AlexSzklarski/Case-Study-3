@@ -175,6 +175,16 @@ sg_vars = [
 ]
 
 ## Application Load Balancer (ALB) Variable Values
+alb_vars = [
+    {
+        name = "hub_alb"
+
+        create_security_group = false
+        enable_deletion_protection = false
+
+        description = "Application Load Balancer (ALB) hosted on the hub VPC."
+    }
+]
 
 ## Transit GateWay Variable Values
 tgw_vars = [

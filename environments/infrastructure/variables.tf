@@ -93,7 +93,6 @@ variable "alb_vars" {
         name = string
 
         create_security_group = bool
-        security_groups = list(string)
         enable_deletion_protection = bool
 
         description = string

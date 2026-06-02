@@ -44,11 +44,11 @@ module "alb" {
 
     name = each.value.name
 
-    vpc_id = each.value.vpc_id
+    vpc_id = var.alb_vpc_id
     subnets = var.alb_subnets
 
     create_security_group = each.value.create_security_group
-    security_groups = each.value.security_groups
+    security_groups = var.alb_security_group
     enable_deletion_protection = each.value.enable_deletion_protection
 
     listeners = var.listener_vars

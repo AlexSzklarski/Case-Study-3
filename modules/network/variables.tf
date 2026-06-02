@@ -37,10 +37,7 @@ variable "alb_vars" {
     type = list(object({
         name = string
 
-        vpc_id = string
-        
         create_security_group = bool
-        security_groups = list(string)
         enable_deletion_protection = bool
 
         description = string
@@ -67,6 +64,14 @@ variable "target_group_vars" {
 }
 
 variable "alb_subnets" {
+    type = list(string)
+}
+
+variable "alb_vpc_id" {
+    type = string
+}
+
+variable "alb_security_group" {
     type = list(string)
 }
 
