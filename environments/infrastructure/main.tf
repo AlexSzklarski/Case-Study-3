@@ -49,33 +49,29 @@ module "network" {
     alb_vars = var.alb_vars
     alb_subnets = data.aws_subnets.public_subnets.ids
 
-    target_group_vars = [
-        {
-            name = "nginx_target"
+    target_group_vars = {
+        name = "nginx_target"
+        port = 80
+        protocol = "HTTP"
+        target_type = "ip"
+        availability_zone = "eu-central-1a"
+
+        health_check = {
+            path = "/"
             port = 80
             protocol = "HTTP"
-            target_type = "ip"
-            availability_zone = "eu-central-1a"
-
-            health_check = {
-                path = "/"
-                port = 80
-                protocol = "HTTP"
-                matcher = 200
-            }
+            matcher = 200
         }
-    ]
+    }
 
-    listener_vars = [
-        {
-            name = "nginx_listener"
-            port = 80
-            protocol = "HTTP"
-            forward = {
-                target_group_key = "nginx_target"
-            }
+    listener_vars = {
+        name = "nginx_listener"
+        port = 80
+        protocol = "HTTP"
+        forward = {
+            target_group_key = "nginx_target"
         }
-    ]
+    }
     
     ## TGW Variables
     tgw_vars = var.tgw_vars
