@@ -55,6 +55,8 @@ data "aws_security_group" "eks_sg" {
         name = "tag:Type"
         values = ["eks_sg"]
     }
+
+    depends_on = [ module.network ]
 }
 
 data "aws_security_group" "rds_sg" {
@@ -62,6 +64,8 @@ data "aws_security_group" "rds_sg" {
         name = "tag:Type"
         values = ["rds_sg"]
     }
+
+    depends_on = [ module.network ]
 }
 
 data "aws_security_group" "alb_sg" {
@@ -69,4 +73,6 @@ data "aws_security_group" "alb_sg" {
         name = "tag:Type"
         values = ["alb_sg"]
     }
+
+    depends_on = [ module.network ]
 }
