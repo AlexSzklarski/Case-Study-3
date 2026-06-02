@@ -51,10 +51,10 @@ module "network" {
     alb_vars = var.alb_vars
     alb_subnets = module.network.id_pub_hub_subnet
     alb_vpc_id = data.aws_vpc.hub_vpc.id
-    alb_security_group = ["alb_sg"]
+    alb_security_group = module.network.alb_sg
 
     target_group_vars = {
-        nginx_target = {
+        nginx-target = {
             name = "nginx_target"
             port = 80
             protocol = "HTTP"
@@ -71,11 +71,11 @@ module "network" {
     }
 
     listener_vars = {
-        nginx_listener = {
+        nginx-listener = {
             port = 80
             protocol = "HTTP"
             forward = {
-                target_group_key = "nginx_target"
+                target_group_key = "nginx-target"
             }
         }
     }

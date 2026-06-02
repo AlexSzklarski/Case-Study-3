@@ -26,6 +26,11 @@ output "id_db_spoke_subnet" {
     description = "Id of the private subnets on the spoke VPC."
 }
 
+## Security Group Outputs
+output "alb_sg" {
+    value = module.security_groups.alb_sg.security_group_id
+}
+
 ## Application Load Balancer (ALB) Outputs
 output "nginx_tg" {
     value = module.alb.hub_alb.target_groups

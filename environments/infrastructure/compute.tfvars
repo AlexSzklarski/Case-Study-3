@@ -6,7 +6,20 @@ eks_vars = [
 
         enable_cluster_creator_admin_permissions = true
         eks_managed_node_groups = {
+            node-0 = {
+                name = "eks_node"
 
+                create = true
+                kubernetes_version = "1.35"
+                instance_types = ["t3.medium"]
+                create_access_entry = true
+
+                subnet_ids = [data.aws_subnets.private_subnets]
+
+                min_size = 1
+                max_size = 2
+                desired_size = 1
+            }
         }
 
         compute_config = {
