@@ -67,10 +67,12 @@ module "network" {
     }
 
     listener_vars = {
-        port = 80
-        protocol = "HTTP"
-        forward = {
-            target_group_key = "nginx_target"
+        nginx_listener = {
+            port = 80
+            protocol = "HTTP"
+            forward = {
+                target_group_key = "nginx_target"
+            }
         }
     }
     
