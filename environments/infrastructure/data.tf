@@ -21,7 +21,7 @@ data "aws_subnets" "public_subnets" {
         values = ["public"]
     }
 
-    depends_on = [ module.network ]
+    depends_on = [ data.aws_vpc.hub_vpc ]
 }
 
 data "aws_vpc" "spoke_vpc" {
