@@ -1,4 +1,7 @@
 ## Compute Module Datablocks
+data "aws_eks_cluster" "eks_cluster" {
+    name = module.compute.eks_name
+}
 
 ## Database Module Datablocks
 
@@ -18,7 +21,6 @@ data "aws_subnets" "public_subnets" {
         values = ["public"]
     }
 }
-
 
 data "aws_vpc" "spoke_vpc" {
     id = module.network.id_spoke_vpc
@@ -53,6 +55,7 @@ data "aws_security_group" "rds_sg" {
         name = "tag:Type"
         values = ["rds_sg"]
     }
-
+    
     depends_on = [ module.network ]
 }
+

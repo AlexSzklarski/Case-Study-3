@@ -32,6 +32,44 @@ variable "vpc_id" {
     type = string
 }
 
+## Application Load Balancer (ALB) Variables
+variable "alb_vars" {
+    type = list(object({
+        name = string
+
+        create_security_group = bool
+        security_groups = list(string)
+        enable_deletion_protection = bool
+
+        description = string
+    }))
+}
+
+variable "listener_vars" {
+    type = list(object({
+        name = string
+        port = number
+        protocol = string
+        forward = map(string)
+    }))
+}
+
+variable "target_group_vars" {
+    type = list(object({
+        name = string
+        port = number
+        protocol = string
+        target_type = string
+        target_id = string
+        availability_zone = string
+        health_check = map(string)
+    }))
+}
+
+variable "alb_subnets" {
+    type = list(string)
+}
+
 ## Transit GateWay (TGW) Variables
 variable "tgw_vars" {
     type = list(object({

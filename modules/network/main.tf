@@ -38,6 +38,27 @@ module "security_groups" {
 }
 
 ## Application Load Balancer (ALB) Resources
+module "alb" {
+    source = "terraform-aws-modules/alb/aws"
+    for_each = { for inst in var.alb_vars : inst.name => inst }
+
+    name = each.value.name
+
+    vpc_id = each.value.vpc_id
+    subnets = each.value.suffbnets
+
+    create_security_group = each.value.create_security_group
+    security_groups = each.value.security_groups
+    enable_deletion_protection = each.value.enable_deletion_protection
+
+    listeners = 
+    target_groups = 
+
+    tags = {
+        name = each.value.name
+        description = each.value.description
+    }
+}
 
 ## Transit GateWay (TGW) Resources
 module "tgw" {
@@ -55,4 +76,4 @@ module "tgw" {
     }
 }
 
-## Route53 Resources
+## Route53 Resourcesff
