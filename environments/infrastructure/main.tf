@@ -14,7 +14,7 @@ module "compute" {
             instance_types = ["t3.medium"]
             create_access_entry = true
 
-            subnet_ids = [data.aws_subnets.private_subnets]
+            subnet_ids = [data.aws_subnets.private_subnets.ids]
 
             min_size = 1
             max_size = 2
