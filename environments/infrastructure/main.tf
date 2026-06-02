@@ -2,8 +2,10 @@ module "compute" {
     source = "../../modules/compute"
 
     eks_vars = var.eks_vars
+    
     vpc_id = data.aws_vpc.spoke_vpc.id
     subnet_ids = data.aws_subnets.private_subnets.ids
+
     node_security_group_id = "eks_sg"
     eks_managed_node_groups = {
         node-0 = {

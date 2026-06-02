@@ -4,9 +4,6 @@ variable "eks_vars" {
         name = string
         kubernetes_version = string
 
-        vpc_id = string
-        subnet_ids = list(string)
-
         node_security_group_id = string
         enable_cluster_creator_admin_permissions = bool
         eks_managed_node_groups = map(any)
