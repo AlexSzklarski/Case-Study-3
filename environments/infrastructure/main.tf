@@ -55,7 +55,6 @@ module "network" {
             port = 80
             protocol = "HTTP"
             target_type = "ip"
-            target_id = data.aws_eks_cluster.eks_cluster.id
             availability_zone = "eu-central-1a"
 
             health_check = {
