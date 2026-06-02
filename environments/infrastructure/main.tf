@@ -3,7 +3,7 @@ module "compute" {
 
     eks_vars = var.eks_vars
     vpc_id = data.aws_vpc.spoke_vpc.id
-    subnet_ids = [data.aws_subnets.private_subnets.ids]
+    subnet_ids = data.aws_subnets.private_subnets.ids
     node_security_group_id = data.aws_security_group.eks_sg.id
     eks_managed_node_groups = {
         node-0 = {
@@ -14,7 +14,7 @@ module "compute" {
             instance_types = ["t3.medium"]
             create_access_entry = true
 
-            subnet_ids = [data.aws_subnets.private_subnets.ids]
+            subnet_ids = data.aws_subnets.private_subnets.ids
 
             min_size = 1
             max_size = 2
@@ -58,7 +58,7 @@ module "network" {
             availability_zone = "eu-central-1a"
 
             health_check = {
-                path = forward
+                path = "/"
                 port = 80
                 protocol = "HTTP"
                 matcher = 200

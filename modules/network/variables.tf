@@ -50,9 +50,7 @@ variable "listener_vars" {
         name = string
         port = number
         protocol = string
-        forward = object({
-            target_group_key = string
-        })
+        forward = map(any)
     }))
 }
 
