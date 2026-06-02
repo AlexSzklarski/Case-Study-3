@@ -55,7 +55,7 @@ module "network" {
 
     target_group_vars = {
         nginx-target = {
-            name = "nginx_target"
+            name = "nginx-target"
             port = 80
             protocol = "HTTP"
             target_type = "ip"
