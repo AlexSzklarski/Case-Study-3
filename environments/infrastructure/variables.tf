@@ -100,7 +100,7 @@ variable "alb_vars" {
 }
 
 variable "listener_vars" {
-    type = list(object({
+    type = map(object({
         port = number
         protocol = string
         forward = map(string)
@@ -108,7 +108,7 @@ variable "listener_vars" {
 }
 
 variable "target_group_vars" {
-    type = list(object({
+    type = map(object({
         name = string
         port = number
         protocol = string
