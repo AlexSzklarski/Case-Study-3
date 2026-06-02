@@ -47,7 +47,6 @@ variable "alb_vars" {
 
 variable "listener_vars" {
     type = map(object({
-        name = string
         port = number
         protocol = string
         forward = map(any)
