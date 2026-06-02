@@ -177,7 +177,7 @@ sg_vars = [
 ## Application Load Balancer (ALB) Variable Values
 alb_vars = [
     {
-        name = "hub_alb"
+        name = "hub-alb"
 
         create_security_group = false
         enable_deletion_protection = false
