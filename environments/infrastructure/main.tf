@@ -73,7 +73,7 @@ module "network" {
             port = 80
             protocol = "HTTP"
             forward = {
-                target_group_key = module.network.nginx_tg
+                target_group_key = "nginx_target"
             }
         }
     ]
