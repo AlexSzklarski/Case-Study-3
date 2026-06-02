@@ -1,16 +1,22 @@
 ## Virtual Private Cloud (VPC) Outputs
-output "id_spoke_vpc" {
-    value = module.vpc_module.spoke_vpc.vpc_id
-    depends_on = [ module.vpc_module ]
-
-    description = "Id of the spoke VPC."
-}
-
 output "id_hub_vpc" {
     value = module.vpc_module.hub_vpc.vpc_id
     depends_on = [ module.vpc_module ]
 
     description = "Id of the hub VPC."
+}
+
+output "id_pub_hub_subnet" {
+    value = module.vpc_module.hub_vpc.public_subnets
+
+    description = "Id of the public subnets on the hub VPC."
+}
+
+output "id_spoke_vpc" {
+    value = module.vpc_module.spoke_vpc.vpc_id
+    depends_on = [ module.vpc_module ]
+
+    description = "Id of the spoke VPC."
 }
 
 output "id_db_spoke_subnet" {
@@ -23,4 +29,6 @@ output "id_db_spoke_subnet" {
 ## Application Load Balancer (ALB) Outputs
 output "nginx_tg" {
     value = module.alb.hub_alb.target_groups
+
+    description = "Nginx target group."
 }

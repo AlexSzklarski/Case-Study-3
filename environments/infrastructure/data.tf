@@ -20,8 +20,6 @@ data "aws_subnets" "public_subnets" {
         name = "tag:Type"
         values = ["public"]
     }
-
-    depends_on = [ data.aws_vpc.hub_vpc ]
 }
 
 data "aws_vpc" "spoke_vpc" {

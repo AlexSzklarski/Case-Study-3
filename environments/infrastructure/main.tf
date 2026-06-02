@@ -47,7 +47,7 @@ module "network" {
 
     ## ALB Variables
     alb_vars = var.alb_vars
-    alb_subnets = data.aws_subnets.public_subnets.ids
+    alb_subnets = module.compute.id_pub_hub_subnet
 
     target_group_vars = {
         nginx_target = {
