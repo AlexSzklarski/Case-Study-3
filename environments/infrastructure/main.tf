@@ -86,12 +86,12 @@ module "network" {
     tgw_attach = {
         hub_attachement = {
             vpc_id = data.aws_vpc.hub_vpc.id
-            subnet_ids = module.network.id_pub_hub_subnet
+            subnet_ids = [module.network.id_pub_hub_subnet]
             destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
         },
         spoke_attachement = {
             vpc_id = data.aws_vpc.spoke_vpc.id
-            subnet_ids = module.network.id_priv_spoke_subnet
+            subnet_ids = [module.network.id_priv_spoke_subnet]
             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
         }
     }
