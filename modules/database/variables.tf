@@ -21,7 +21,7 @@ variable "rds_vars" {
     }))
 }
 
-variable "subnet_ids" {
+variable "rds_subnet_ids" {
     type = list(string)
 }
 

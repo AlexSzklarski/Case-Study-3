@@ -182,7 +182,7 @@ alb_vars = [
         create_security_group = false
         enable_deletion_protection = false
 
-        description = "Application Load Balancer (ALB) hosted on the hub VPC."
+        description = "Application Load Balancer ALB hosted on the hub VPC."
     }
 ]
 

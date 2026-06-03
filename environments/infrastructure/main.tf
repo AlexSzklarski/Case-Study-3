@@ -32,7 +32,7 @@ module "database" {
 
     ## RDS Variables
     rds_vars = var.rds_vars
-    subnet_ids = data.aws_subnets.database_subnets.ids
+    rds_subnet_ids = data.aws_subnets.database_subnets.ids
     rds_sg_id = ["rds_sg"]
 }
 

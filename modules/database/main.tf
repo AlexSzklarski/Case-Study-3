@@ -18,7 +18,7 @@ module "rds_module" {
     username = each.value.username
     
     create_db_subnet_group = each.value.create_db_subnet_group
-    subnet_ids = var.subnet_ids
+    subnet_ids = var.rds_subnet_ids
 
     vpc_security_group_ids = var.rds_sg_id
 

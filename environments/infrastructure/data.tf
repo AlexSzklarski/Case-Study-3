@@ -37,6 +37,8 @@ data "aws_subnets" "private_subnets" {
         name = "tag:Type"
         values = ["private"]
     }
+
+    depends_on = [ module.vpc ]
 }
 
 data "aws_subnets" "database_subnets" {
@@ -49,4 +51,6 @@ data "aws_subnets" "database_subnets" {
         name = "tag:Type"
         values = ["database"]
     }
+
+    depends_on = [ module.vpc ]
 }
