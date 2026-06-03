@@ -66,7 +66,6 @@ variable "policy_rule_signon_vars" {
     type = list(object({
         name = string
         
-        policy_id = string
         mfa_required = bool
         mfa_prompt = string
 

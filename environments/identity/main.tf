@@ -10,4 +10,5 @@ module "okta" {
     policy_mfa_vars = var.policy_mfa_vars
     policy_signon_vars = var.policy_signon_vars
     policy_rule_signon_vars = var.policy_rule_signon_vars
+    policy_id = module.okta.policy_signon_id["signon_policy"]
 }

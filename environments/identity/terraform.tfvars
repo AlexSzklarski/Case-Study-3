@@ -132,7 +132,6 @@ policy_rule_signon_vars = [
     {
         name = "signon_rules"
 
-        policy_id = module.okta.policy_signon_id["signon_policy"]
         mfa_required = true
         mfa_prompt = "ALWAYS"
 

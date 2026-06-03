@@ -74,7 +74,7 @@ resource "okta_policy_rule_signon" "policy_rule_signon_resource" {
 
     name = each.value.name
     
-    policy_id = each.value.policy_id
+    policy_id = var.policy_id
     mfa_required = each.value.mfa_required
     mfa_prompt = each.value.mfa_prompt
 
