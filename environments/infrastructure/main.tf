@@ -71,7 +71,7 @@ module "alb" {
             port = 80
             protocol = "HTTP"
             target_type = "instance"
-            target_id = module.compute.eks_id
+            target_id = module.eks.eks_id
             availability_zone = "eu-central-1a"
 
             health_check = {

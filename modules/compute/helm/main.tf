@@ -10,6 +10,4 @@ resource "helm_release" "eks_monitoring" {
     create_namespace = each.value.create_namespace
 
     dependency_update = each.value.dependency_update
-
-    depends_on = [ module.eks ]
 }
