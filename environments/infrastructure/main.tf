@@ -21,7 +21,7 @@ module "eks" {
 
             create = true
             kubernetes_version = "1.35"
-            instance_types = ["t3.medium"]
+            instance_types = ["t3.micro"]
             create_access_entry = true
 
             subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
