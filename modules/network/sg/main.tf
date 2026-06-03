@@ -1,6 +1,7 @@
 ## Security Group Resources
 module "security_groups" {
     source = "terraform-aws-modules/security-group/aws"
+    version = "5.3.1"
     for_each = { for inst in var.sg_vars : inst.name => inst }
 
     name = each.value.name
