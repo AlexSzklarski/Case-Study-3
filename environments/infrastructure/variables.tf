@@ -21,6 +21,19 @@ variable "eks_vars" {
     }))
 }
 
+variable "helm_vars" {
+    type = list(object({
+        name = string
+        chart = string
+        repository = string
+
+        namespace = string
+        create_namespace = bool
+
+        dependency_update = bool
+    }))
+}
+
 ## Database Module Variables
 variable "rds_vars" {
     type = list(object({
@@ -55,7 +68,7 @@ variable "s3_vars" {
 }
 
 ## Network Module Variables
-variable "_vpc_vars" {
+variable "vpc_vars" {
     type = list(object({
         name = string
         type = string

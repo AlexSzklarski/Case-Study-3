@@ -24,18 +24,7 @@ module "compute" {
         }
     }
 
-    helm_vars = [
-        {
-            name = "ingress-nginx"
-            chart = "ingress-nginx"
-            repository = "https://kubernetes.github.io/ingress-nginx"
-
-            namespace = "application"
-            create_namespace = true
-
-            dependency_update = true
-        }
-    ]
+    helm_vars = var.helm_vars
 }
 
 module "database" {
@@ -54,7 +43,7 @@ module "network" {
     source = "../../modules/network"
 
     ## VPC Variables
-    _vpc_vars = var._vpc_vars
+    vpc_vars = var.vpc_vars
 
     ## Security Group Variables
     sg_vars = var.sg_vars

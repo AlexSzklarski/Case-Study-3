@@ -58,3 +58,16 @@ eks_vars = [
         description = "EKS cluster deployed on the spoke VPC."
     }
 ]
+
+helm_vars = [
+    {
+        name = "ingress-nginx"
+        chart = "ingress-nginx"
+        repository = "https://kubernetes.github.io/ingress-nginx"
+
+        namespace = "application"
+        create_namespace = true
+
+        dependency_update = true
+    }
+]
