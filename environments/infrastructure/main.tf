@@ -14,7 +14,7 @@ module "eks" {
     eks_vpc_id = data.aws_vpc.spoke_vpc.id
     eks_subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
 
-    node_security_group_id = module.spoke_sg.eks_sg_id
+    node_security_group_id = module.sg.eks_sg_id
     eks_managed_node_groups = {
         node-0 = {
             name = "eks_node"
@@ -46,7 +46,7 @@ module "database" {
     ## RDS Variables
     rds_vars = var.rds_vars
     rds_subnet_ids = module.vpc.id_db_spoke_subnet
-    rds_sg_id = [module.spoke_sg.rds_sg_id]
+    rds_sg_id = [module.sg.rds_sg_id]
 }
 
 module "vpc" {
@@ -75,7 +75,7 @@ module "alb" {
     alb_vars = var.alb_vars
     alb_subnets = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1]
     alb_vpc_id = data.aws_vpc.hub_vpc.id
-    alb_security_group = [module.hub_sg.alb_sg_id]
+    alb_security_group = [module.sg.alb_sg_id]
 
     target_group_vars = {   
         nginx-target = {
