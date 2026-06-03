@@ -20,7 +20,7 @@ output "id_spoke_vpc" {
 }
 
 output "id_priv_spoke_subnet" {
-    value = module.vpc_module.spoke_vpc.private_subnets
+    value = module.vpc_module.spoke_vpc.private_subnets[0]
     depends_on = [ module.vpc_module ]
 
     description = "Id of the private subnets on the spoke VPC."
