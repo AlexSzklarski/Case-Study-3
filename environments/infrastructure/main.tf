@@ -12,7 +12,7 @@ module "eks" {
     eks_vars = var.eks_vars
     
     eks_vpc_id = data.aws_vpc.spoke_vpc.id
-    eks_subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
+    eks_subnet_ids = [module.vpc.id_priv_spoke_subnet_0, module.vpc.id_priv_spoke_subnet_1]
 
     node_security_group_id = module.sg.eks_sg_id
     eks_managed_node_groups = {

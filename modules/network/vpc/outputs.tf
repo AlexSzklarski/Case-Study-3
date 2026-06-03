@@ -32,6 +32,13 @@ output "id_priv_spoke_subnet_0" {
     description = "Id of the private subnets on the spoke VPC."
 }
 
+output "id_priv_spoke_subnet_1" {
+    value = module.vpc_module.spoke_vpc.private_subnets[1]
+    depends_on = [ module.vpc_module ]
+
+    description = "Id of the private subnets on the spoke VPC."
+}
+
 output "id_db_spoke_subnet" {
     value = module.vpc_module.spoke_vpc.database_subnets
     depends_on = [ module.vpc_module ]
