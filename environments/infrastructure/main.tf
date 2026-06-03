@@ -37,24 +37,28 @@ module "database" {
 }
 
 module "vpc" {
-    source = "../../modules/vpc"
+    source = "../../modules/network/vpc"
 
     ## VPC Variables
     vpc_vars = var.vpc_vars
 }
 
-module "network" {
-    source = "../../modules/network"
+module "sg" {
+    source = "../../modules/network/sg"
 
     ## Security Group Variables
     sg_vars = var.sg_vars
     vpc_id = data.aws_vpc.spoke_vpc.id
+}
+
+module "alb" {
+    source = "../../modules/network/alb"
 
     ## ALB Variables
     alb_vars = var.alb_vars
-    alb_subnets = module.network.id_pub_hub_subnet
+    alb_subnets = module.vpc.id_pub_hub_subnet
     alb_vpc_id = data.aws_vpc.hub_vpc.id
-    alb_security_group = [module.network.alb_sg]
+    alb_security_group = [module.sg.alb_sg]
 
     target_group_vars = {
         nginx-target = {
@@ -83,6 +87,10 @@ module "network" {
             }
         }
     }
+}
+
+module "tgw" {
+    source = "../../modules/network/tgw"
     
     ## TGW Variables
     tgw_vars = var.tgw_vars
