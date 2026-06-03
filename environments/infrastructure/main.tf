@@ -34,9 +34,6 @@ module "database" {
     rds_vars = var.rds_vars
     subnet_ids = data.aws_subnets.database_subnets.ids
     rds_sg_id = ["rds_sg"]
-
-    ## S3 Variables
-    s3_vars = var.s3_vars
 }
 
 module "network" {
@@ -53,7 +50,7 @@ module "network" {
     alb_vars = var.alb_vars
     alb_subnets = module.network.id_pub_hub_subnet
     alb_vpc_id = data.aws_vpc.hub_vpc.id
-    alb_security_group = module.network.alb_sg
+    alb_security_group = [module.network.alb_sg]
 
     target_group_vars = {
         nginx-target = {
@@ -89,12 +86,12 @@ module "network" {
     tgw_attach = {
         hub_attachement = {
             vpc_id = data.aws_vpc.hub_vpc.id
-            subnet_ids = data.aws_subnets.public_subnets.ids
+            subnet_ids = [data.aws_subnets.public_subnets.ids]
             destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
         },
         spoke_attachement = {
             vpc_id = data.aws_vpc.spoke_vpc.id
-            subnet_ids = data.aws_subnets.private_subnets.ids
+            subnet_ids = [data.aws_subnets.private_subnets.ids]
             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
         }
     }

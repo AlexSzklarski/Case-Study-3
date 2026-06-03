@@ -28,14 +28,3 @@ variable "subnet_ids" {
 variable "rds_sg_id" {
     type = list(string)
 }
-
-## S3 Bucket Variables
-variable "s3_vars" {
-    type = list(object({
-        bucket = string
-        versioning = map(any)
-        
-        name = string
-        description = string
-    }))
-}
