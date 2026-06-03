@@ -20,11 +20,11 @@ variable "eks_vars" {
     }))
 }
 
-variable "vpc_id" {
+variable "eks_vpc_id" {
     type = string
 }
 
-variable "subnet_ids" {
+variable "eks_subnet_ids" {
     type = list(string)
 }
 
@@ -46,19 +46,5 @@ variable "eks_managed_node_groups" {
         min_size = number
         max_size = number
         desired_size = number
-    }))
-}
-
-## Helm Resources
-variable "helm_vars" {
-    type = list(object({
-        name = string
-        chart = string
-        repository = string
-
-        namespace = string
-        create_namespace = bool
-
-        dependency_update = bool
     }))
 }

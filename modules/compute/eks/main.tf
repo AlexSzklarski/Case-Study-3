@@ -6,8 +6,8 @@ module "eks" {
     name = each.value.name
     kubernetes_version = each.value.kubernetes_version
 
-    vpc_id = var.vpc_id
-    subnet_ids = var.subnet_ids
+    vpc_id = var.eks_vpc_id
+    subnet_ids = var.eks_subnet_ids
 
     node_security_group_id = var.node_security_group_id
     enable_cluster_creator_admin_permissions = each.value.enable_cluster_creator_admin_permissions
@@ -27,22 +27,5 @@ module "eks" {
         name = each.value.name
         description = each.value.description
     }
-
-    depends_on = [ var.vpc_id ]
 }
 
-## Helm Resources
-resource "helm_release" "eks_monitoring" {
-    for_each = { for inst in var.helm_vars : inst.name => inst }
-
-    name = each.value.name
-    chart = each.value.chart
-    repository = each.value.repository
- 
-    namespace = each.value.namespace
-    create_namespace = each.value.create_namespace
-
-    dependency_update = each.value.dependency_update
-
-    depends_on = [ module.eks ]
-}
