@@ -1,6 +1,6 @@
 ## Compute Module Datablocks
 data "aws_eks_cluster_auth" "eks_cluster_data" {
-  name = "eks-cluster"
+  name = "eks_cluster"
 }
 
 ## Network Module Datablocks
