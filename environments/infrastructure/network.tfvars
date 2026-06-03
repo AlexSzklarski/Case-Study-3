@@ -13,8 +13,8 @@ vpc_vars = [
 
         enable_vpn_gateway = true
 
-        enable_nat_gateway = true
-        single_nat_gateway = true
+        enable_nat_gateway = false
+        single_nat_gateway = false
 
         description = "Hub VPC allowing inbound via ALB and TGW."
     },
@@ -24,9 +24,9 @@ vpc_vars = [
         cidr = "10.1.0.0/16"
         azs = ["eu-central-1a", "eu-central-1b"]
 
-        public_subnets = []
-        private_subnets = ["10.1.1.0/24", "10.1.2.0/24"]
-        database_subnets = ["10.1.3.0/24", "10.1.4.0/24"]
+        public_subnets = ["10.1.1.0/24"]
+        private_subnets = ["10.1.2.0/24", "10.1.3.0/24"]
+        database_subnets = ["10.1.4.0/24", "10.1.5.0/24"]
         create_database_subnet_group = true
         
         enable_vpn_gateway = true
