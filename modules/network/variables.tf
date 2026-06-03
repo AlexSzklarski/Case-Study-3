@@ -58,6 +58,7 @@ variable "target_group_vars" {
         port = number
         protocol = string
         target_type = string
+        target_id = string
         availability_zone = string
         health_check = map(string)
     }))
