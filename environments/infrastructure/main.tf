@@ -36,11 +36,15 @@ module "database" {
     rds_sg_id = ["rds_sg"]
 }
 
-module "network" {
-    source = "../../modules/network"
+module "vpc" {
+    source = "../../modules/vpc"
 
     ## VPC Variables
     vpc_vars = var.vpc_vars
+}
+
+module "network" {
+    source = "../../modules/network"
 
     ## Security Group Variables
     sg_vars = var.sg_vars
@@ -86,12 +90,12 @@ module "network" {
     tgw_attach = {
         hub_attachement = {
             vpc_id = data.aws_vpc.hub_vpc.id
-            subnet_ids = module.network.id_pub_hub_subnet
+            subnet_ids = module.vpc.id_pub_hub_subnet
             destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
         },
         spoke_attachement = {
             vpc_id = data.aws_vpc.spoke_vpc.id
-            subnet_ids = module.network.id_priv_spoke_subnet
+            subnet_ids = module.vpc.id_priv_spoke_subnet
             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
         }
     }
