@@ -83,22 +83,14 @@ module "alb" {
             port = 80
             protocol = "HTTP"
             target_type = "instance"
-            target_id = module.eks.eks_id
+            target_id = module.eks.eks_cluster_id
             availability_zone = "eu-central-1a"
 
             health_check = {
                 path = "/"
-                port = 80
+                port = "80"
                 protocol = "HTTP"
-                matcher = 200
-            }
-
-            target_group_attachments = {
-                nginx-target = {
-                    port = 80
-                    target_id = module.eks.eks_id
-                    availability_zone = "eu-central-1a"
-                }
+                matcher = "200"
             }
         }
     }

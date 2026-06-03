@@ -1,5 +1,5 @@
 ## Elastic Kubernetes Service (EKS) Outputs 
-output "eks_id" {
+output "eks_cluster_id" {
     value = module.eks.eks_cluster.cluster_id
 
     description = "Id of the EKS cluster"
