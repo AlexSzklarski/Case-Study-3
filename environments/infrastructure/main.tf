@@ -61,7 +61,7 @@ module "alb" {
 
     ## ALB Variables
     alb_vars = var.alb_vars
-    alb_subnets = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1f]
+    alb_subnets = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1]
     alb_vpc_id = data.aws_vpc.hub_vpc.id
     alb_security_group = [module.sg.alb_sg]
 
