@@ -77,23 +77,23 @@ module "alb" {
     alb_vpc_id = data.aws_vpc.hub_vpc.id
     alb_security_group = [module.sg.alb_sg_id]
 
-    target_group_vars = {   
-        nginx-target = {
-            name = "nginx-target"
-            port = 80
-            protocol = "HTTP"
-            target_type = "ip"
-            availability_zone = "eu-central-1a"
-            create_attachment = false
+    # target_group_vars = {   
+    #     nginx-target = {
+    #         name = "nginx-target"
+    #         port = 80
+    #         protocol = "HTTP"
+    #         target_type = "ip"
+    #         availability_zone = "eu-central-1a"
+    #         create_attachment = false
 
-            health_check = {
-                path = "/"
-                port = "80"
-                protocol = "HTTP"
-                matcher = "200"
-            }
-        }
-    }
+    #         health_check = {
+    #             path = "/"
+    #             port = "80"
+    #             protocol = "HTTP"
+    #             matcher = "200"
+    #         }
+    #     }
+    # }
 
     listener_vars = {
         nginx-listener = {

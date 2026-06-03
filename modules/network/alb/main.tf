@@ -13,7 +13,7 @@ module "alb" {
     enable_deletion_protection = each.value.enable_deletion_protection
 
     listeners = var.listener_vars
-    target_groups = var.target_group_vars
+    # target_groups = var.target_group_vars
 
     tags = {
         name = each.value.name
