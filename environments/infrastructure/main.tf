@@ -23,6 +23,19 @@ module "compute" {
             desired_size = 1
         }
     }
+
+    helm_vars = [
+        {
+            name = "ingress-nginx"
+            chart = "ingress-nginx"
+            repository = "https://kubernetes.github.io/ingress-nginx"
+
+            namespace = "application"
+            create_namespace = true
+
+            dependency_update = true
+        }
+    ]
 }
 
 module "database" {
