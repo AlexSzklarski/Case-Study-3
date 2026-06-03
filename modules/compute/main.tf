@@ -27,6 +27,8 @@ module "eks" {
         name = each.value.name
         description = each.value.description
     }
+
+    depends_on = [ var.vpc_id ]
 }
 
 ## Helm Resources
