@@ -72,6 +72,7 @@ hub_sg_vars = [
         ]
 
         description = "Application Load Balancer ALB security group."
+    }
 ]
 
 spoke_sg_vars = [
