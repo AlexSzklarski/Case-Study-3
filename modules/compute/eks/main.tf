@@ -19,6 +19,7 @@ module "eks" {
     iam_role_additional_policies = each.value.iam_role_additional_policies
 
     endpoint_public_access = each.value.endpoint_public_access
+
     access_entries = each.value.access_entries
     
     addons = each.value.addons

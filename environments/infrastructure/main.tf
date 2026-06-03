@@ -1,11 +1,3 @@
-provider "helm" {
-    kubernetes {
-      host = module.eks.eks_cluster_endpoint
-      cluster_ca_certificate = base64decode(module.eks.eks_cluster_ca)
-      token = module.eks.eks_cluster_token
-    }
-}
-
 module "eks" {
     source = "../../modules/compute/eks" 
 
@@ -38,6 +30,7 @@ module "helm" {
 
     ## Helm Variables
     helm_vars = var.helm_vars
+    depends_on = [ module.eks ]
 }
 
 module "database" {
