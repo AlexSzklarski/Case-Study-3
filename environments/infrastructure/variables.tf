@@ -55,7 +55,7 @@ variable "s3_vars" {
 }
 
 ## Network Module Variables
-variable "1_vpc_vars" {
+variable "_vpc_vars" {
     type = list(object({
         name = string
         type = string
