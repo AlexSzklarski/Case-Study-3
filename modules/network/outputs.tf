@@ -6,6 +6,12 @@ output "id_hub_vpc" {
     description = "Id of the hub VPC."
 }
 
+output "id_pub_hub_subnet" {
+    value = module.vpc_module.hub_vpc.public_subnets
+
+    description = "Id of the public subnet 0 on the hub VPC."
+}
+
 output "id_pub_hub_subnet_0" {
     value = module.vpc_module.hub_vpc.public_subnets[0]
 
