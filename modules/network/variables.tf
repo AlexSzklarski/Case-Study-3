@@ -90,7 +90,7 @@ variable "tgw_vars" {
 variable "tgw_attach" {
     type = map(object({
         vpc_id = string
-        subnet_ids = string
+        subnet_ids = list(string)
         destination_cidr_block = string
     }))
 }
