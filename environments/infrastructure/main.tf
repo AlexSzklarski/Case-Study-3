@@ -1,3 +1,11 @@
+provider "helm" {
+    kubernetes {
+      host = module.eks.eks_cluster_endpoint
+      cluster_ca_certificate = base64decode(module.eks.eks_cluster_ca)
+      token = module.eks.eks_cluster_token
+    }
+}
+
 module "eks" {
     source = "../../modules/compute/eks" 
 
@@ -65,7 +73,7 @@ module "alb" {
     alb_vpc_id = data.aws_vpc.hub_vpc.id
     alb_security_group = [module.sg.alb_sg_id]
 
-    target_group_vars = {
+    target_group_vars = {   
         nginx-target = {
             name = "nginx-target"
             port = 80

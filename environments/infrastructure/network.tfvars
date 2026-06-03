@@ -35,7 +35,7 @@ vpc_vars = [
 ## Security Group Variable Values
 sg_vars = [
     {
-        name = "alb_sg"
+        name = "alb-sg"
 
         ingress_with_cidr_blocks = [
             {
@@ -71,7 +71,7 @@ sg_vars = [
             }
         ]
 
-        description = "Application Load Balancer (ALB) security group."
+        description = "Application Load Balancer ALB security group."
     },
     {
         name = "eks_sg"
