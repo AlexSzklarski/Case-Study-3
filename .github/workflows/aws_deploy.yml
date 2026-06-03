@@ -1,9 +1,7 @@
 name: "AWS deploy CI/CD pipeline"
 
 on:
-    push:
-        branches: ["main"]
-    pull_request:
+    workflow_dispatch:
 
 env:
     AWS_REGION: "eu-central-1"
