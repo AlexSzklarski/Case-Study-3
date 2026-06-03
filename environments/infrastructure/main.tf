@@ -103,7 +103,7 @@ module "tgw" {
         },
         spoke_attachement = {
             vpc_id = data.aws_vpc.spoke_vpc.id
-            subnet_ids = [module.vpc.id_priv_spoke_subnet]
+            subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
         }
     }
