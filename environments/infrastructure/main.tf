@@ -4,7 +4,7 @@ module "eks" {
     eks_vars = var.eks_vars
     
     eks_vpc_id = data.aws_vpc.spoke_vpc.id
-    eks_subnet_ids = [data.aws_subnets.private_subnets.ids]
+    eks_subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
 
     node_security_group_id = "eks_sg"
     eks_managed_node_groups = {
@@ -16,7 +16,7 @@ module "eks" {
             instance_types = ["t3.medium"]
             create_access_entry = true
 
-            subnet_ids = data.aws_subnets.private_subnets.ids
+            subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
 
             min_size = 1
             max_size = 2
