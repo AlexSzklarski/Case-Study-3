@@ -58,7 +58,8 @@ module "network" {
             name = "nginx-target"
             port = 80
             protocol = "HTTP"
-            target_type = "ip"
+            target_type = "instance"
+            target_id = module.network.eks_id
             availability_zone = "eu-central-1a"
 
             health_check = {
