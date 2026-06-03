@@ -17,8 +17,12 @@ output "eks_cluster_ca" {
     description = "Cluster certificate authority"
 }
 
-output "eks_cluster_token" {
-    value = module.eks.eks_cluster.token
+data "aws_eks_cluster_auth" "aws-cluster-data" {
+  name = "eks-cluster"
+}
 
-    description = "Cluster token"
+output "cluster_token" {
+  value       = data.aws_eks_cluster_auth.aws-cluster-data.token
+  sensitive   = true
+  description = "Cluster token"
 }
