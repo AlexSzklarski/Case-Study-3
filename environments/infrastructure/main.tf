@@ -95,15 +95,15 @@ module "alb" {
     #     }
     # }
 
-    listener_vars = {
-        nginx-listener = {
-            port = 80
-            protocol = "HTTP"
-            forward = {
-                target_group_key = "nginx-target"
-            }
-        }
-    }
+    # listener_vars = {
+    #     nginx-listener = {
+    #         port = 80
+    #         protocol = "HTTP"
+    #         forward = {
+    #             target_group_key = "nginx-target"
+    #         }
+    #     }
+    # }
 }
 
 module "tgw" {

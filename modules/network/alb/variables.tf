@@ -10,13 +10,13 @@ variable "alb_vars" {
     }))
 }
 
-variable "listener_vars" {
-    type = map(object({
-        port = number
-        protocol = string
-        forward = map(string)
-    }))
-}
+# variable "listener_vars" {
+#     type = map(object({
+#         port = number
+#         protocol = string
+#         forward = map(string)
+#     }))
+# }
 
 # variable "target_group_vars" {
 #     type = map(object({
