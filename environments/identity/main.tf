@@ -1,3 +1,13 @@
+provider "okta" {
+    base_url = "okta.com"
+    scopes = [
+        "okta.users.manage",
+        "okta.groups.manage",
+        "okta.apps.manage",
+        "okta.policies.manage"
+    ]
+}
+
 module "okta" {
     source = "../../modules/okta"
 
