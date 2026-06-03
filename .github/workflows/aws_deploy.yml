@@ -43,5 +43,5 @@ jobs:
               working-directory: environments/infrastructure
 
             - name: Terraform apply
-              run: terraform apply -auto-approve
+              run: terraform apply -auto-approve -var-file="compute.tfvars" -var-file="database.tfvars" -var-file="network.tfvars"
               working-directory: environments/infrastructure
