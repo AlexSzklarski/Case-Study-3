@@ -2,7 +2,7 @@
 eks_vars = [
     {
         name = "eks_cluster"
-        kubernetes_version = "1.35"
+        kubernetes_version = "1.36"
 
         enable_cluster_creator_admin_permissions = true
         eks_managed_node_groups = {
@@ -32,13 +32,15 @@ eks_vars = [
         }
 
         endpoint_public_access = true
+
         access_entries = {
-            root = {
+            admin = {
                 principal_arn = "arn:aws:iam::476320587253:root"
 
                 policy_associations = {
-                    root_assc = {
+                    admin = {
                         policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
                         access_scope = {
                             type = "cluster"
                         }
