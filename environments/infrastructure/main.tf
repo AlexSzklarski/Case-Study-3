@@ -93,7 +93,7 @@ module "alb" {
                 matcher = 200
             }
 
-            target_group_attachements = {
+            target_group_attachments = {
                 nginx-target = {
                     port = 80
                     target_id = module.eks.eks_id
