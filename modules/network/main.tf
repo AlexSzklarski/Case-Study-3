@@ -1,7 +1,7 @@
 ## Virtual Private Cloud (VPC) Resources
 module "vpc_module" {
     source = "terraform-aws-modules/vpc/aws"
-    for_each = { for inst in var.vpc_vars : inst.name => inst }
+    for_each = { for inst in var._vpc_vars : inst.name => inst }
 
     name = each.value.name
     cidr = each.value.cidr

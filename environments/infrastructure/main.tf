@@ -54,7 +54,7 @@ module "network" {
     source = "../../modules/network"
 
     ## VPC Variables
-    vpc_vars = var.vpc_vars
+    _vpc_vars = var._vpc_vars
 
     ## Security Group Variables
     sg_vars = var.sg_vars

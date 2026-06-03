@@ -1,5 +1,5 @@
 ## Virtual Private Cloud (VPC) Variables
-variable "vpc_vars" {
+variable "_vpc_vars" {
     type = list(object({
         name = string
         cidr = string
