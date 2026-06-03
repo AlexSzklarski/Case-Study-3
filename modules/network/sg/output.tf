@@ -1,7 +1,21 @@
 ## Security Group Outputs
-output "alb_sg" {
+output "alb_sg_id" {
     value = module.security_groups.alb_sg.security_group_id
     depends_on = [ module.security_groups ]
 
     description = "Id of the Application Load Balancer (ALB) security group."
+}
+
+output "eks_sg_id" {
+    value = module.security_groups.eks_sg.security_group_id
+    depends_on = [ module.security_groups ]
+
+    description = "Id of the Elastic Kubernetes Service (EKS) security group."
+}
+
+output "rds_sg_id" {
+    value = module.security_groups.rds_sg.security_group_id
+    depends_on = [ module.security_groups ]
+
+    description = "Id of the Relational Database Service (RDS) security group."
 }
