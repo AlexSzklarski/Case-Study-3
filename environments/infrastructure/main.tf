@@ -82,9 +82,9 @@ module "alb" {
             name = "nginx-target"
             port = 80
             protocol = "HTTP"
-            target_type = "instance"
-            target_id = module.eks.eks_cluster_id
+            target_type = "ip"
             availability_zone = "eu-central-1a"
+            create_attachment = false
 
             health_check = {
                 path = "/"
