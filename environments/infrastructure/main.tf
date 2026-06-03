@@ -92,6 +92,14 @@ module "alb" {
                 protocol = "HTTP"
                 matcher = 200
             }
+
+            target_group_attachements = {
+                nginx-target = {
+                    port = 80
+                    target_id = module.eks.eks_id
+                    availability_zone = "eu-central-1a"
+                }
+            }
         }
     }
 

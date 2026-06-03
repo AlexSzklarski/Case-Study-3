@@ -27,6 +27,7 @@ variable "target_group_vars" {
         target_id = string
         availability_zone = string
         health_check = map(string)
+        target_group_attachements = map(object(string))
     }))
 }
 
