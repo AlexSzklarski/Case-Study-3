@@ -37,7 +37,7 @@ module "database" {
 
     ## RDS Variables
     rds_vars = var.rds_vars
-    rds_subnet_ids = data.aws_subnets.database_subnets.ids
+    rds_subnet_ids = module.vpc.id_db_spoke_subnet
     rds_sg_id = ["rds_sg"]
 }
 
@@ -61,7 +61,7 @@ module "alb" {
 
     ## ALB Variables
     alb_vars = var.alb_vars
-    alb_subnets = data.aws_subnets.public_subnets.ids
+    alb_subnets = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1f]
     alb_vpc_id = data.aws_vpc.hub_vpc.id
     alb_security_group = [module.sg.alb_sg]
 
