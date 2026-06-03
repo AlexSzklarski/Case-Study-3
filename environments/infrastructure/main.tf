@@ -30,7 +30,6 @@ module "helm" {
 
     ## Helm Variables
     helm_vars = var.helm_vars
-    depends_on = [ module.eks ]
 }
 
 module "database" {
