@@ -1,7 +1,9 @@
 name: "Okta CI/CD pipeline"
 
 on:
-    workflow_dispatch:
+    push:
+        branches: ["main"]
+    pull_request:
     
 permissions:
     contents: read
@@ -12,10 +14,10 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-          OKTA_ORG_NAME: ${{ secrets.ORG_NAME }}
-          OKTA_API_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          OKTA_API_PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
-          OKTA_API_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          OKTA_ORG_NAME: ${{ secrets.OKTA_ORG_NAME }}
+          OKTA_API_CLIENT_ID: ${{ secrets.OKTA_API_CLIENT_ID }}
+          OKTA_API_PRIVATE_KEY_ID: ${{ secrets.OKTA_API_PRIVATE_KEY_ID }}
+          OKTA_API_PRIVATE_KEY: ${{ secrets.OKTA_API_PRIVATE_KEY }}
 
         steps:
             - name: Checkout
@@ -36,6 +38,6 @@ jobs:
               run: terraform plan
               working-directory: environments/identity
 
-            - name: Terraform apply
-              run: terraform apply -auto-approve
-              working-directory: environments/identity
+            # - name: Terraform apply
+            #   run: terraform apply -auto-approve
+            #   working-directory: environments/identity
