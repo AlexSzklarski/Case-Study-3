@@ -16,11 +16,3 @@ output "eks_cluster_ca" {
 
     description = "Cluster certificate authority"
 }
-
-
-
-output "eks_cluster_token" {
-  value       = data.aws_eks_cluster_auth.eks_cluster_data.token
-  sensitive   = true
-  description = "Cluster token"
-}
