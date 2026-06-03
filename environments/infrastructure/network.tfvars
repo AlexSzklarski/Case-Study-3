@@ -33,7 +33,7 @@ vpc_vars = [
 ]
 
 ## Security Group Variable Values
-sg_vars = [
+hub_sg_vars = [
     {
         name = "alb-sg"
 
@@ -72,7 +72,9 @@ sg_vars = [
         ]
 
         description = "Application Load Balancer ALB security group."
-    },
+]
+
+spoke_sg_vars = [
     {
         name = "eks_sg"
 

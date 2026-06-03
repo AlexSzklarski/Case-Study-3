@@ -76,7 +76,18 @@ variable "vpc_vars" {
     }))
 }
 
-variable "sg_vars" {
+variable "hub_sg_vars" {
+    type = list(object({
+        name = string
+
+        ingress_with_cidr_blocks = list(map(string))
+        egress_with_cidr_blocks = list(map(string))
+
+        description = string 
+    }))
+}
+
+variable "spoke_sg_vars" {
     type = list(object({
         name = string
 

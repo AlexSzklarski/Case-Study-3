@@ -56,11 +56,19 @@ module "vpc" {
     vpc_vars = var.vpc_vars
 }
 
-module "sg" {
+module "hub_sg" {
     source = "../../modules/network/sg"
 
     ## Security Group Variables
-    sg_vars = var.sg_vars
+    sg_vars = var.hub_sg_vars
+    vpc_id = data.aws_vpc.hub_vpc.id
+}
+
+module "spoke_sg" {
+    source = "../../modules/network/sg"
+
+    ## Security Group Variables
+    sg_vars = var.spoke_sg_vars
     vpc_id = data.aws_vpc.spoke_vpc.id
 }
 
