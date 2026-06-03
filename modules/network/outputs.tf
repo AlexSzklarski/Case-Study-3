@@ -33,7 +33,7 @@ output "alb_sg" {
 
 ## Application Load Balancer (ALB) Outputs
 output "nginx_tg" {
-    value = module.alb.hub_alb.target_groups
+    value = module.alb.hub-alb.target_groups
 
     description = "Nginx target group."
 }
