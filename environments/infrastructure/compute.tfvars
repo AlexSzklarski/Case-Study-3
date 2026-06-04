@@ -83,7 +83,7 @@ iam_role_vars = [
         trust_policy_permissions = {
             intern_policies = {
                 actions = [
-                    "sts:AssumeRole"
+                    ["sts:AssumeRole"]
                 ]
 
                 principals = [{
