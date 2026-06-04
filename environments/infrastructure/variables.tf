@@ -38,13 +38,14 @@ variable "iam_role_vars" {
     type = list(object({
         name = string
 
-        trust_policy_permissions = list(any)
+        trust_policy_permissions = map(any)
 
         policies = list(any)
 
         description = string
     }))
 }
+
 ## Database Module Variables
 variable "rds_vars" {
     type = list(object({
