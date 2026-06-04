@@ -35,7 +35,7 @@ eks_vars = [
 
         access_entries = {
             admin = {
-                principal_arn = "arn:aws:iam::476320587253:root"
+                principal_arn = "arn:aws:iam::209042753281:root"
 
                 policy_associations = {
                     admin = {
