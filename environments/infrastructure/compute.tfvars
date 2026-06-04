@@ -104,7 +104,7 @@ iam_role_vars = [
     {
         name = "sysadmin_role"
 
-        trust_policy_permissions = {
+        trust_policy_permissions = [
             intern_policies = {
                 actions = [
                     "sts:AssumeRole"
@@ -117,7 +117,7 @@ iam_role_vars = [
                     ]
                 }]
             }
-        }
+        ]
 
         policies = {
             AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
