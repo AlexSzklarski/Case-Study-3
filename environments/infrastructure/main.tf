@@ -12,7 +12,7 @@ module "eks" {
             name = "eks_node"
 
             create = true
-            kubernetes_version = "1.35"
+            kubernetes_version = "1.36"
             instance_types = ["t3.micro"]
             create_access_entry = true
 
