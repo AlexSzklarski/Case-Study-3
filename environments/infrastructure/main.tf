@@ -32,6 +32,12 @@ module "helm" {
     helm_vars = var.helm_vars
 }
 
+module "iam" {
+    source = "../../modules/compute/iam"
+
+    iam_role_vars = var.iam_role_vars
+}
+
 module "rds" {
     source = "../../modules/database/rds"
 

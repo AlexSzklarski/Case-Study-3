@@ -61,6 +61,7 @@ eks_vars = [
     }
 ]
 
+## Helm Variable Values
 helm_vars = [
     {
         name = "ingress-nginx"
@@ -71,5 +72,58 @@ helm_vars = [
         create_namespace = true
 
         dependency_update = true
+    }
+]
+
+## Identity Access Management (IAM) Variable Values
+iam_role_vars = [
+    {
+        name = "intern_role"
+
+        trust_policy_permissions = {
+            intern_policies = {
+                actions = [
+                    "sts:AssumeRole"
+                ]
+
+                principals = [{
+                    type = "AWS"
+                    identifiers = [
+                        "arn:aws:iam::209042753281:user/Okta"
+                    ]
+                }]
+            }
+        }
+
+        policies = {
+
+        }
+
+        description = "Intern Identity Access Management (IAM) role."
+    },
+    {
+        name = "sysadmin_role"
+
+        trust_policy_permissions = {
+            intern_policies = {
+                actions = [
+                    "sts:AssumeRole"
+                ]
+
+                principals = [{
+                    type = "AWS"
+                    identifiers = [
+                        "arn:aws:iam::209042753281:user/Okta"
+                    ]
+                }]
+            }
+        }
+
+        policies = {
+            AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+            AdministratorAccess-Amplify = "arn:aws:iam::aws:policy/AdministratorAccess-Amplify"
+        }
+
+        description = "System admin Identity Access Management (IAM) role."
     }
 ]

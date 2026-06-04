@@ -34,6 +34,17 @@ variable "helm_vars" {
     }))
 }
 
+variable "iam_role_vars" {
+    type = list(object({
+        name = string
+
+        trust_policy_permissions = list(any)
+
+        policies = list(string)
+
+        description = string
+    }))
+}
 ## Database Module Variables
 variable "rds_vars" {
     type = list(object({
@@ -57,7 +68,6 @@ variable "rds_vars" {
     }))
 }
 
-## S3 Bucket Variables
 variable "s3_vars" {
     type = list(object({
         bucket = string
