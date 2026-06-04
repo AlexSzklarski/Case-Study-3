@@ -40,7 +40,7 @@ variable "iam_role_vars" {
 
         trust_policy_permissions = list(any)
 
-        policies = list(string)
+        policies = list(any)
 
         description = string
     }))
