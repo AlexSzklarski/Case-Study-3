@@ -57,6 +57,17 @@ variable "rds_vars" {
     }))
 }
 
+## S3 Bucket Variables
+variable "s3_vars" {
+    type = list(object({
+        bucket = string
+        versioning = map(any)
+        
+        name = string
+        description = string
+    }))
+}
+
 ## Network Module Variables
 variable "vpc_vars" {
     type = list(object({

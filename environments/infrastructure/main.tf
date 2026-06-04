@@ -32,13 +32,19 @@ module "helm" {
     helm_vars = var.helm_vars
 }
 
-module "database" {
-    source = "../../modules/database"
+module "rds" {
+    source = "../../modules/database/rds"
 
     ## RDS Variables
     rds_vars = var.rds_vars
     rds_subnet_ids = module.vpc.id_db_spoke_subnet
     rds_sg_id = [module.sg.rds_sg_id]
+}
+
+module "s3" {
+    source = "../../modules/database/s3"
+
+    s3_vars = var.s3_vars
 }
 
 module "vpc" {
