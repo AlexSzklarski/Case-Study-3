@@ -12,7 +12,7 @@ user_vars = [
         last_name = "van Dommelen"
         login = "Dirk.Dommelen@innovatech.com"
         email = "Dirk.Dommelen@innovatech.com"
-        department = "Developer"
+        department = "Developerf"
     },
     {
         first_name = "Rostik"

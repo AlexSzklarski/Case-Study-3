@@ -75,22 +75,20 @@ helm_vars = [
     }
 ]
 
-## Identity Access Management (IAM) Variable Values
+## Identity Access Management (IAM) Role Variable Values
 iam_role_vars = [
     {
         name = "intern_role"
 
         trust_policy_permissions = {
-            intern_policies = {
+            intern_role = {
                 actions = [
-                    ["sts:AssumeRole"]
+                    "sts:AssumeRole"
                 ]
 
                 principals = [{
+                    identifiers = [ "arn:aws:iam::209042753281:user/Okta" ]
                     type = "AWS"
-                    identifiers = [
-                        "arn:aws:iam::209042753281:user/Okta"
-                    ]
                 }]
             }
         }
@@ -99,31 +97,28 @@ iam_role_vars = [
 
         }
 
-        description = "Intern Identity Access Management (IAM) role."
+        description = "Intern IAM role."
     },
     {
         name = "sysadmin_role"
 
         trust_policy_permissions = {
-            intern_policies = {
+            intern_role = {
                 actions = [
                     "sts:AssumeRole"
                 ]
 
                 principals = [{
+                    identifiers = [ "arn:aws:iam::209042753281:user/Okta" ]
                     type = "AWS"
-                    identifiers = [
-                        "arn:aws:iam::209042753281:user/Okta"
-                    ]
                 }]
             }
         }
 
         policies = {
             AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
-            AdministratorAccess-Amplify = "arn:aws:iam::aws:policy/AdministratorAccess-Amplify"
         }
 
-        description = "System admin Identity Access Management (IAM) role."
+        description = "Systems admin IAM role."
     }
 ]
