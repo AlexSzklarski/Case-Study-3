@@ -8,7 +8,7 @@ module "hub_security_groups" {
     vpc_id = var.sg_hub_vpc_id
 
     ingress_with_cidr_blocks = each.value.ingress_with_cidr_blocks
-    egress_with_cidr_blocks = each.value.egress_with_cidr_fblocks
+    egress_with_cidr_blocks = each.value.egress_with_cidr_blocks
 
     tags = {
         name = each.value.name
