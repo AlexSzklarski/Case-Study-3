@@ -60,4 +60,6 @@ data "aws_subnets" "database_subnets" {
 
 data "aws_alb" "alb_url" {
   name = "hub-alb"
+
+  depends_on = [ module.alb ]
 }
