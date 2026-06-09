@@ -30,6 +30,8 @@ module "helm" {
 
     ## Helm Variables
     helm_vars = var.helm_vars
+
+    depends_on = [ module.eks ]
 }
 
 module "iam" {
@@ -175,7 +177,7 @@ resource "aws_cognito_user_pool_client" "cognito_client" {
   user_pool_id = aws_cognito_user_pool.website_user_pool.id
 
   allowed_oauth_flows_user_pool_client = true
-  callback_urls = [data.aws_alb.alb_url.dns_name]
+  callback_urls = ["https://${data.aws_alb.alb_url.dns_name}"]
 
   allowed_oauth_flows = ["code"]
   allowed_oauth_scopes = ["profile", "openid"]

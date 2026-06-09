@@ -81,7 +81,7 @@ iam_role_vars = [
         name = "intern_role"
 
         trust_policy_permissions = {
-            intern_role = {
+            internRole = {
                 actions = [
                     "sts:AssumeRole"
                 ]
@@ -103,7 +103,7 @@ iam_role_vars = [
         name = "sysadmin_role"
 
         trust_policy_permissions = {
-            intern_role = {
+            sysadminRole = {
                 actions = [
                     "sts:AssumeRole"
                 ]
