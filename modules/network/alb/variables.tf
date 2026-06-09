@@ -10,26 +10,26 @@ variable "alb_vars" {
     }))
 }
 
-variable "target_group_vars" {
-    type = map(object({
-        name = string
-        port = number
-        protocol = string
-        target_type = string
-        target_id = string
-        availability_zone = string
-        health_check = map(string)
-        create_attachment = bool
-    }))
-}
+# variable "target_group_vars" {
+#     type = map(object({
+#         name = string
+#         port = number
+#         protocol = string
+#         target_type = string
+#         target_id = string
+#         availability_zone = string
+#         health_check = map(string)
+#         create_attachment = bool
+#     }))
+# }
 
-variable "listener_vars" {
-    type = map(object({
-        port = number
-        protocol = string
-        forward = map(string)
-    }))
-}
+# variable "listener_vars" {
+#     type = map(object({
+#         port = number
+#         protocol = string
+#         forward = map(string)
+#     }))
+# }
 
 variable "alb_subnets" {
     type = list(string)
