@@ -134,7 +134,7 @@ resource "aws_cognito_user_pool" "website_user_pool" {
 
 ## Cognito user groups.
 resource "aws_cognito_user_group" "admin_group" {
-  name = "admin_group"
+  name = "admin_group"  
   user_pool_id = aws_cognito_user_pool.website_user_pool.id
 }
 
@@ -159,6 +159,7 @@ resource "aws_cognito_user_in_group" "user_in_unauth_group" {
 resource "aws_cognito_user" "admin_user" {
   username = "admin"
   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+  password = "Password1!"
 }
 
 resource "aws_cognito_user" "unauth_user" {
