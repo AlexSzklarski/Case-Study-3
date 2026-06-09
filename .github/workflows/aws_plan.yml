@@ -1,4 +1,4 @@
-name: "AWS deploy CI/CD pipeline"
+name: "AWS plan CI/CD pipeline"
 
 on:
     workflow_dispatch:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
     terraform:
-        name: "AWS Deploy"
+        name: "AWS Plan"
         runs-on: ubuntu-latest
 
         steps:
@@ -38,8 +38,4 @@ jobs:
 
             - name: Terraform plan
               run: terraform plan -var-file="compute.tfvars" -var-file="database.tfvars" -var-file="network.tfvars"
-              working-directory: environments/infrastructure
-
-            - name: Terraform apply
-              run: terraform apply -auto-approve -var-file="compute.tfvars" -var-file="database.tfvars" -var-file="network.tfvars"
               working-directory: environments/infrastructure

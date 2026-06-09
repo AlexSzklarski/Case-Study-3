@@ -75,33 +75,33 @@ module "alb" {
     alb_vpc_id = data.aws_vpc.hub_vpc.id
     alb_security_group = [module.sg.alb_sg_id]
 
-    # target_group_vars = {   
-    #     nginx-target = {
-    #         name = "nginx-target"
-    #         port = 80
-    #         protocol = "HTTP"
-    #         target_type = "ip"
-    #         availability_zone = "eu-central-1a"
-    #         create_attachment = false
+    target_group_vars = {   
+        nginx-target = {
+            name = "nginx-target"
+            port = 80
+            protocol = "HTTP"
+            target_type = "ip"
+            availability_zone = "eu-central-1a"
+            create_attachment = false
 
-    #         health_check = {
-    #             path = "/"
-    #             port = "80"
-    #             protocol = "HTTP"
-    #             matcher = "200"
-    #         }
-    #     }
-    # }
+            health_check = {
+                path = "/"
+                port = "80"
+                protocol = "HTTP"
+                matcher = "200"
+            }
+        }
+    }
 
-    # listener_vars = {
-    #     nginx-listener = {
-    #         port = 80
-    #         protocol = "HTTP"
-    #         forward = {
-    #             target_group_key = "nginx-target"
-    #         }
-    #     }
-    # }
+    listener_vars = {
+        nginx-listener = {
+            port = 80
+            protocol = "HTTP"
+            forward = {
+                target_group_key = "nginx-target"
+            }
+        }
+    }
 }
 
 module "tgw" {
@@ -122,4 +122,61 @@ module "tgw" {
             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
         }
     }
+}
+
+## Cognito user pool which saves users.
+resource "aws_cognito_user_pool" "website_user_pool" {
+  name = "website_user_pool"
+}
+
+## Cognito user groups.
+resource "aws_cognito_user_group" "admin_group" {
+  name = "admin_group"
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+}
+
+resource "aws_cognito_user_in_group" "user_in_admin_group" {
+  username = aws_cognito_user.admin_user.username
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+  group_name = aws_cognito_user_group.admin_group.name
+}
+
+resource "aws_cognito_user_group" "unauth_group" {
+  name = "unauth_group"
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+}
+
+resource "aws_cognito_user_in_group" "user_in_unauth_group" {
+  username = aws_cognito_user.unauth_user.username
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+  group_name = aws_cognito_user_group.unauth_group.name
+}
+
+## Cognito users.
+resource "aws_cognito_user" "admin_user" {
+  username = "admin"
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+}
+
+resource "aws_cognito_user" "unauth_user" {
+  username = "unauth_user"
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+}
+
+## Hosted Cognito login UI.
+resource "aws_cognito_user_pool_domain" "cognito_domain" {
+  domain = "hybrid-cloud-login"
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+}
+
+resource "aws_cognito_user_pool_client" "cognito_client" {
+  name = "cognito_client"
+  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+
+  allowed_oauth_flows_user_pool_client = true
+  callback_urls = [data.aws_alb.alb_url.dns_name]
+
+  allowed_oauth_flows = ["code"]
+  allowed_oauth_scopes = ["profile", "openid"]
+  supported_identity_providers = ["COGNITO"]
 }

@@ -57,3 +57,7 @@ data "aws_subnets" "database_subnets" {
 
     depends_on = [ module.vpc ]
 }
+
+data "aws_alb" "alb_url" {
+  name = "hub-alb"
+}
