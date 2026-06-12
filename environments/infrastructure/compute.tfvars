@@ -122,3 +122,14 @@ iam_role_vars = [
         description = "Systems admin IAM role."
     }
 ]
+
+## EC2 module Variable Values
+ec2_vars = [
+    {
+        name = "ovpn_ec2"
+        instance_type = "t3.micro"
+        associate_public_ip_address = true
+        create_security_group = false
+        description = "EC2 instance hosting the OpenVPN access server."
+    }
+]

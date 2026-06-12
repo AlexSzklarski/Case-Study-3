@@ -3,6 +3,21 @@
 #   name = "eks_cluster"
 # }
 
+data "aws_ami" "ovpn_ami" {
+    most_recent = true
+    owners = ["aws-marketplace"]
+
+    filter {
+        name   = "product-code"
+        values = ["f2ew2wrz425a1jagnifd02u5t"]
+    }
+
+    tags = {
+        Name = "ovpn_ami"
+        Description = "Most recent OpenVPN Access Server ami."
+    }
+}
+
 ## Network Module Datablocks
 data "aws_vpc" "hub_vpc" {
     filter {

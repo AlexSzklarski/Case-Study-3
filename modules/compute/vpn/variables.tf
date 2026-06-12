@@ -1,0 +1,22 @@
+## EC2 variables
+variable "ec2_vars" {
+    type = list(object({
+        name = string
+        instance_type = string
+        associate_public_ip_address = bool        
+        create_security_group = bool
+        description = string
+    }))
+}
+
+variable "ami_var" {
+    type = string
+}
+
+variable "subnet_id_var" {
+    type = string
+}
+
+variable "security_group_var" {
+    type = list(string)
+}

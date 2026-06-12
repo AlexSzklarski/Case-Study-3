@@ -40,6 +40,15 @@
 #     iam_role_vars = var.iam_role_vars
 # }
 
+module "vpn" {
+  source = "../../modules/compute/vpn"
+
+  ec2_vars = var.ec2_vars
+  ami_var = data.aws_ami.ovpn_ami.id
+  subnet_id_var = module.vpc.id_pub_hub_subnet_0
+  security_group_var = [module.sg.ovpn_sg_id]
+}
+
 module "rds" {
     source = "../../modules/database/rds"
 

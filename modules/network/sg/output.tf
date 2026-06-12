@@ -19,3 +19,10 @@ output "rds_sg_id" {
 
     description = "Id of the Relational Database Service (RDS) security group."
 }
+
+output "ovpn_sg_id" {
+    value = module.hub_security_groups.ovpn-sg.security_group_id
+    depends_on = [ module.hub_security_groups ]
+
+    description = "Id of the OpenVPN security group."
+}

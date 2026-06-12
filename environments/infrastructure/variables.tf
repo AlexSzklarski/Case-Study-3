@@ -34,6 +34,16 @@ variable "helm_vars" {
     }))
 }
 
+variable "ec2_vars" {
+    type = list(object({
+        name = string
+        instance_type = string
+        associate_public_ip_address = bool        
+        create_security_group = bool
+        description = string
+    }))
+}
+
 ## Identity Access Management (IAM) Role Variables
 variable "iam_role_vars" {
     type = list(object({
