@@ -44,6 +44,7 @@ module "rds" {
     source = "../../modules/database/rds"
 
     ## RDS Variables
+    parameter_vars = var.parameter_vars
     rds_vars = var.rds_vars
     rds_subnet_ids = module.vpc.id_db_spoke_subnet
     rds_sg_id = [module.sg.rds_sg_id]

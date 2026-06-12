@@ -54,6 +54,20 @@ variable "iam_role_vars" {
 }
 
 ## Database Module Variables
+variable "parameter_vars" {
+    type = list(object({
+        name = string
+        family = string
+
+        parameters = list(object({
+            name = string
+            value = string
+        }))
+
+        description = string
+    }))
+}
+
 variable "rds_vars" {
     type = list(object({
         identifier = string
@@ -71,6 +85,8 @@ variable "rds_vars" {
         username = string
         
         create_db_subnet_group = bool
+
+        parameter_group_name = string
 
         description = string
     }))

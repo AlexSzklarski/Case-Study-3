@@ -1,4 +1,20 @@
 ## Relational Database Service (RDS) Variable Values
+parameter_vars = [
+    {
+        name = "postgre-replication"
+        family = "postgres18"
+    
+        parameters = [
+            {
+                name = "rds.logical_replication"
+                value = "1"
+            }
+        ]
+        
+        description = "Database parameters allowing replication between two Postgre databases."
+    }
+]
+
 rds_vars = [
     {
         identifier = "rds-database"
@@ -16,6 +32,8 @@ rds_vars = [
         username = "admindatabase"
     
         create_db_subnet_group = true
+
+        parameter_group_name = "postgre-replication"
 
         description = "Relational Database Service running PostgreSQL 18."
     }

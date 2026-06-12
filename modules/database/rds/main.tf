@@ -1,4 +1,18 @@
 ## Relational Database Service (RDS) Resources
+resource "aws_db_parameter_group" "postgre_parameters" {
+    for_each = { for inst in var.parameter_vars : inst.name => inst }
+
+    name = each.value.name
+    family = each.value.family
+
+    parameter {
+        name = each.value.name
+        value = each.value.value
+    }
+
+    description = each.value.description
+}
+
 module "rds_module" {
     source = "terraform-aws-modules/rds/aws"
     for_each = { for inst in var.rds_vars : inst.identifier => inst }
@@ -21,6 +35,8 @@ module "rds_module" {
     subnet_ids = var.rds_subnet_ids
 
     vpc_security_group_ids = var.rds_sg_id
+
+    parameter_group_name = each.value.parameter_group_name
 
     tags = {
         name = each.value.identifier
