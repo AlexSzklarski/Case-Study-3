@@ -6,8 +6,8 @@ resource "aws_db_parameter_group" "postgre_parameters" {
     family = each.value.family
 
     parameter {
-        name = each.value.name
-        value = each.value.par_values
+        name = "rds.logical_replication"
+        value = "1"
     }
 
     description = each.value.description

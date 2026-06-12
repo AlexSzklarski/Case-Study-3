@@ -4,11 +4,6 @@ variable "parameter_vars" {
         name = string
         family = string
 
-        parameters = list(object({
-            name = string
-            par_values = string
-        }))
-
         description = string
     }))
 }

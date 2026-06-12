@@ -3,13 +3,6 @@ parameter_vars = [
     {
         name = "postgre-replication"
         family = "postgres18"
-    
-        parameters = [
-            {
-                name = "rds.logical_replication"
-                value = "1"
-            }
-        ]
         
         description = "Database parameters allowing replication between two Postgre databases."
     }
