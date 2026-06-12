@@ -8,6 +8,7 @@ resource "aws_db_parameter_group" "postgre_parameters" {
     parameter {
         name = "rds.logical_replication"
         value = "1"
+        apply_method = "pending-reboot"
     }
 
     description = each.value.description
