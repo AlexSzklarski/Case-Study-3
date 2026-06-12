@@ -61,7 +61,7 @@ variable "parameter_vars" {
 
         parameters = list(object({
             name = string
-            value = string
+            par_values = string
         }))
 
         description = string

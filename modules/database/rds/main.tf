@@ -7,7 +7,7 @@ resource "aws_db_parameter_group" "postgre_parameters" {
 
     parameter {
         name = each.value.name
-        value = each.value.value
+        value = each.value.par_values
     }
 
     description = each.value.description
