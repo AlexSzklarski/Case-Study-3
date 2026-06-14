@@ -219,11 +219,18 @@ resource "aws_iam_role_policy_attachment" "dms_role_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSVPCManagementRole"
 }
 
+resource "aws_dms_replication_subnet_group" "dms_subnet" {
+  replication_subnet_group_id = "dms-subnet"
+  subnet_ids = module.vpc.id_db_spoke_subnet
+  replication_subnet_group_description = "Subnet group hosting DMS."
+}
+
 resource "aws_dms_replication_instance" "dms_instance" {
   replication_instance_id = "dms-replication-instance"
   replication_instance_class = "dms.t3.micro"
   apply_immediately = true
   vpc_security_group_ids = [module.sg.rds_sg_id]
+  replication_subnet_group_id = aws_dms_replication_subnet_group.dms_subnet.id
 
   depends_on = [ aws_iam_role_policy_attachment.dms_role_attach ]
 }
@@ -267,10 +274,4 @@ resource "aws_dms_replication_task" "dms_task" {
   table_mappings = "{\"rules\":[{\"rule-type\":\"selection\",\"rule-id\":\"1\",\"rule-name\":\"include-all\",\"object-locator\":{\"schema-name\":\"%\",\"table-name\":\"%\"},\"rule-action\":\"include\"}]}"
 
   replication_instance_arn = aws_dms_replication_instance.dms_instance.replication_instance_arn
-}
-
-resource "aws_dms_replication_subnet_group" "dms_subnet" {
-  replication_subnet_group_id = "dms-subnet"
-  subnet_ids = module.vpc.id_db_spoke_subnet
-  replication_subnet_group_description = "Subnet group hosting DMS."
 }
