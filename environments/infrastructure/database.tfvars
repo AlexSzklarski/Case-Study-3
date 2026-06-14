@@ -23,6 +23,7 @@ rds_vars = [
 
         db_name = "rdsdatabase"
         username = "admindatabase"
+        password = "Password1!"
     
         create_db_subnet_group = true
 

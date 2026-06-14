@@ -23,6 +23,7 @@ variable "rds_vars" {
 
         db_name = string
         username = string
+        password = string
         
         create_db_subnet_group = bool
 

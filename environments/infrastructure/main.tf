@@ -196,3 +196,81 @@ resource "aws_cognito_user_pool_client" "cognito_client" {
   allowed_oauth_scopes = ["profile", "openid"]
   supported_identity_providers = ["COGNITO"]
 }
+
+resource "aws_iam_role" "dms_role" {
+  name = "dms-vpc-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "dms.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "dms_role_attach" {
+  role = aws_iam_role.dms_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonDMSVPCManagementRole"
+}
+
+resource "aws_dms_replication_instance" "dms_instance" {
+  replication_instance_id = "dms-replication-instance"
+  replication_instance_class = "dms.t3.micro"
+  apply_immediately = true
+  vpc_security_group_ids = [module.sg.rds_sg_id]
+
+  depends_on = [ aws_iam_role_policy_attachment.dms_role_attach ]
+}
+
+resource "aws_dms_endpoint" "onprem_endpoint" {
+  endpoint_id = "onprem-dms-endpoint"
+  engine_name = "postgres"
+  endpoint_type = "source"
+
+  server_name = "0.0.0.0/0" ## Change after initial deployment
+  port = 5432
+
+  database_name = "test"
+  username = "rep"
+  password = "Password1!"
+}
+
+resource "aws_dms_endpoint" "rds_endpoint" {
+  endpoint_id = "rds-dms-endpoint"
+  engine_name = "postgres"
+  endpoint_type = "target"
+
+  server_name = module.rds.rds_url
+  port = 5432
+
+  database_name = "rdsdatabase"
+  username = "admindatabase"
+  password = "Password1!"
+
+  depends_on = [ module.rds ]
+}
+
+resource "aws_dms_replication_task" "dms_task" {
+  replication_task_id = "dms-task"
+
+  source_endpoint_arn = aws_dms_endpoint.rds_endpoint.endpoint_arn
+  target_endpoint_arn = aws_dms_endpoint.onprem_endpoint.endpoint_arn
+
+  migration_type = "full-load-and-cdc"
+
+  table_mappings = "{\"rules\":[{\"rule-type\":\"selection\",\"rule-id\":\"1\",\"rule-name\":\"include-all\",\"object-locator\":{\"schema-name\":\"%\",\"table-name\":\"%\"},\"rule-action\":\"include\"}]}"
+
+  replication_instance_arn = aws_dms_replication_instance.dms_instance.replication_instance_arn
+}
+
+resource "aws_dms_replication_subnet_group" "dms_subnet" {
+  replication_subnet_group_id = "dms-subnet"
+  subnet_ids = module.vpc.id_db_spoke_subnet
+  replication_subnet_group_description = "Subnet group hosting DMS."
+}

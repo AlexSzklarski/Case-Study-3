@@ -31,6 +31,7 @@ module "rds_module" {
 
     db_name = each.value.db_name
     username = each.value.username
+    password_wo = each.value.password
     
     create_db_subnet_group = each.value.create_db_subnet_group
     subnet_ids = var.rds_subnet_ids
