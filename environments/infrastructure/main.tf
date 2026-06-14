@@ -227,7 +227,7 @@ resource "aws_dms_replication_subnet_group" "dms_subnet" {
 
 resource "aws_dms_replication_instance" "dms_instance" {
   replication_instance_id = "dms-replication-instance"
-  replication_instance_class = "dms.t3.micro"
+  replication_instance_class = "t3.micro"
   engine_version = "3.6.1"
   apply_immediately = true
   vpc_security_group_ids = [module.sg.rds_sg_id]
