@@ -267,8 +267,8 @@ resource "aws_dms_endpoint" "rds_endpoint" {
 resource "aws_dms_replication_task" "dms_task" {
   replication_task_id = "dms-task"
 
-  source_endpoint_arn = aws_dms_endpoint.rds_endpoint.endpoint_arn
-  target_endpoint_arn = aws_dms_endpoint.onprem_endpoint.endpoint_arn
+  source_endpoint_arn = aws_dms_endpoint.onprem_endpoint.endpoint_arn
+  target_endpoint_arn = aws_dms_endpoint.rds_endpoint.endpoint_arn
 
   migration_type = "full-load-and-cdc"
 
