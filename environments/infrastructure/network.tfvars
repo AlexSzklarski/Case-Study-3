@@ -110,6 +110,13 @@ hub_sg_vars = [
                 protocol = "udp"
                 cidr_blocks = "0.0.0.0/0"
                 description = "OpenVPN default port."
+            },
+            {
+                from_port = 5432
+                to_port = 5432
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 5432 for PostgreSQL."
             }
         ]
         egress_with_cidr_blocks = [

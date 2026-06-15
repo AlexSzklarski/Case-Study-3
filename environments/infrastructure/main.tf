@@ -261,6 +261,8 @@ resource "aws_dms_endpoint" "rds_endpoint" {
   username = "admindatabase"
   password = "Password1!"
 
+  ssl_mode = "require"
+
   depends_on = [ module.rds ]
 }
 
