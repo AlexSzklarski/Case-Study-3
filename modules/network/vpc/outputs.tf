@@ -45,3 +45,8 @@ output "id_db_spoke_subnet" {
 
     description = "Id of the database subnets on the spoke VPC."
 }
+
+output "pub_spoke_subnet" {
+    value = module.vpc_module.spoke_vpc.public_subnets[0]
+    depends_on = [ module.vpc_module ]
+}

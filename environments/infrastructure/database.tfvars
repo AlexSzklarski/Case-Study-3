@@ -27,7 +27,7 @@ rds_vars = [
     
         create_db_subnet_group = true
 
-        parameter_group_name = "postgre-replication"
+        parameter_group_name = "postgre-replication"x
 
         description = "Relational Database Service running PostgreSQL 18."
     }

@@ -45,7 +45,7 @@ module "vpn" {
 
   ec2_vars = var.ec2_vars
   ami_var = data.aws_ami.ovpn_ami.id
-  subnet_id_var = module.vpc.id_pub_hub_subnet_0
+  subnet_id_var = module.vpc.pub_spoke_subnet
   security_group_var = [module.sg.ovpn_sg_id]
 }
 
