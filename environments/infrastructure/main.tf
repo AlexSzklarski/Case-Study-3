@@ -137,62 +137,62 @@ module "tgw" {
     }
 }
 
-## Cognito user pool which saves users.
-resource "aws_cognito_user_pool" "website_user_pool" {
-  name = "website_user_pool"
-}
+# ## Cognito user pool which saves users.
+# resource "aws_cognito_user_pool" "website_user_pool" {
+#   name = "website_user_pool"
+# }
 
-## Cognito users.
-resource "aws_cognito_user" "admin_user" {
-  username = "admin"
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-  password = "Password1!" ## CHANGE TO VAR
-}
+# ## Cognito users.
+# resource "aws_cognito_user" "admin_user" {
+#   username = "admin"
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+#   password = "Password1!" ## CHANGE TO VAR
+# }
 
-resource "aws_cognito_user" "guest_user" {
-  username = "guest"
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-  password = "Password1!" ## CHANGE TO VAR
-}
+# resource "aws_cognito_user" "guest_user" {
+#   username = "guest"
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+#   password = "Password1!" ## CHANGE TO VAR
+# }
 
-## Cognito user groups.
-resource "aws_cognito_user_group" "admin_group" {
-  name = "admin_group"  
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-}
+# ## Cognito user groups.
+# resource "aws_cognito_user_group" "admin_group" {
+#   name = "admin_group"  
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+# }
 
-resource "aws_cognito_user_group" "guest_group" {
-  name = "guest_group" 
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-}
+# resource "aws_cognito_user_group" "guest_group" {
+#   name = "guest_group" 
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+# }
 
-resource "aws_cognito_user_in_group" "user_in_admin_group" {
-  username = aws_cognito_user.admin_user.username
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-  group_name = aws_cognito_user_group.admin_group.name
-}
+# resource "aws_cognito_user_in_group" "user_in_admin_group" {
+#   username = aws_cognito_user.admin_user.username
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+#   group_name = aws_cognito_user_group.admin_group.name
+# }
 
-resource "aws_cognito_user_in_group" "user_in_guest_group" {
-  username = aws_cognito_user.guest_user.username
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-  group_name = aws_cognito_user_group.guest_group.name
-}
+# resource "aws_cognito_user_in_group" "user_in_guest_group" {
+#   username = aws_cognito_user.guest_user.username
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+#   group_name = aws_cognito_user_group.guest_group.name
+# }
 
-## Hosted Cognito login UI.
-resource "aws_cognito_user_pool_domain" "cognito_domain" {
-  domain = "hybrid-cloud-login"
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
-}
+# ## Hosted Cognito login UI.
+# resource "aws_cognito_user_pool_domain" "cognito_domain" {
+#   domain = "hybrid-cloud-login"
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
+# }
 
-resource "aws_cognito_user_pool_client" "cognito_client" {
-  name = "cognito_client"
-  user_pool_id = aws_cognito_user_pool.website_user_pool.id
+# resource "aws_cognito_user_pool_client" "cognito_client" {
+#   name = "cognito_client"
+#   user_pool_id = aws_cognito_user_pool.website_user_pool.id
 
-  allowed_oauth_flows_user_pool_client = true
-  callback_urls = ["http://127.0.0.1:5500/website_frontend/index.html"] ## CHANGE 
-  logout_urls = ["http://127.0.0.1:5500/website_frontend/index.html"] ## CHANGE
+#   allowed_oauth_flows_user_pool_client = true
+#   callback_urls = ["http://127.0.0.1:5500/website_frontend/index.html"] ## CHANGE 
+#   logout_urls = ["http://127.0.0.1:5500/website_frontend/index.html"] ## CHANGE 
 
-  allowed_oauth_flows = ["code"]
-  allowed_oauth_scopes = ["profile", "openid"]
-  supported_identity_providers = ["COGNITO"]
-}
+#   allowed_oauth_flows = ["code"]
+#   allowed_oauth_scopes = ["profile", "openid"]
+#   supported_identity_providers = ["COGNITO"]
+# }
