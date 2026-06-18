@@ -217,25 +217,25 @@ spoke_sg_vars = [
     }
 ]
 
-## Application Load Balancer (ALB) Variable Values
-alb_vars = [
-    {
-        name = "hub-alb"
+# ## Application Load Balancer (ALB) Variable Values
+# alb_vars = [
+#     {
+#         name = "hub-alb"
 
-        create_security_group = false
-        enable_deletion_protection = false
+#         create_security_group = false
+#         enable_deletion_protection = false
 
-        description = "Application Load Balancer ALB hosted on the hub VPC."
-    }
-]
+#         description = "Application Load Balancer ALB hosted on the hub VPC."
+#     }
+# ]
 
-## Transit GateWay Variable Values
-tgw_vars = [
-    {
-        name = "hub_spoke_tgw"
+# ## Transit GateWay Variable Values
+# tgw_vars = [
+#     {
+#         name = "hub_spoke_tgw"
 
-        share_tgw = false
+#         share_tgw = false
         
-        description = "Transit GateWay connecting the hub and spoke VPCs together."
-    }
-]
+#         description = "Transit GateWay connecting the hub and spoke VPCs together."
+#     }
+# ]
