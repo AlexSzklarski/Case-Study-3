@@ -69,9 +69,9 @@ module "vpc" {
 module "sg" {
     source = "../../modules/network/sg"
 
-    ## Hub Security Group Variables
-    sg_hub_vars = var.hub_sg_vars
-    sg_hub_vpc_id = data.aws_vpc.hub_vpc.id
+    # ## Hub Security Group Variables
+    # sg_hub_vars = var.hub_sg_vars
+    # sg_hub_vpc_id = data.aws_vpc.hub_vpc.id
 
     ## Spoke Security Group Variables
     sg_spoke_vars = var.spoke_sg_vars
