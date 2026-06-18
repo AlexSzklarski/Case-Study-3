@@ -78,64 +78,64 @@ module "sg" {
     sg_spoke_vpc_id = data.aws_vpc.spoke_vpc.id
 }
 
-module "alb" {
-    source = "../../modules/network/alb"
+# module "alb" {
+#     source = "../../modules/network/alb"
 
-    ## ALB Variables
-    alb_vars = var.alb_vars
-    alb_subnets = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1]
-    alb_vpc_id = data.aws_vpc.hub_vpc.id
-    alb_security_group = [module.sg.alb_sg_id]
+#     ## ALB Variables
+#     alb_vars = var.alb_vars
+#     alb_subnets = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1]
+#     alb_vpc_id = data.aws_vpc.hub_vpc.id
+#     alb_security_group = [module.sg.alb_sg_id]
 
-    # target_group_vars = {   
-    #     nginx-target = {
-    #         name = "nginx-target"
-    #         port = 80
-    #         protocol = "HTTP"
-    #         target_type = "ip"
-    #         target_id = ""
-    #         availability_zone = "eu-central-1a"
-    #         create_attachment = false
+#     # target_group_vars = {   
+#     #     nginx-target = {
+#     #         name = "nginx-target"
+#     #         port = 80
+#     #         protocol = "HTTP"
+#     #         target_type = "ip"
+#     #         target_id = ""
+#     #         availability_zone = "eu-central-1a"
+#     #         create_attachment = false
 
-    #         health_check = {
-    #             path = "/"
-    #             port = "80"
-    #             protocol = "HTTP"
-    #             matcher = "200"
-    #         }
-    #     }
-    # }
+#     #         health_check = {
+#     #             path = "/"
+#     #             port = "80"
+#     #             protocol = "HTTP"
+#     #             matcher = "200"
+#     #         }
+#     #     }
+#     # }
 
-    # listener_vars = {
-    #     nginx-listener = {
-    #         port = 80
-    #         protocol = "HTTP"
-    #         forward = {
-    #             target_group_key = "nginx-target"
-    #         }
-    #     }
-    # }
-}
+#     # listener_vars = {
+#     #     nginx-listener = {
+#     #         port = 80
+#     #         protocol = "HTTP"
+#     #         forward = {
+#     #             target_group_key = "nginx-target"
+#     #         }
+#     #     }
+#     # }
+# }
 
-module "tgw" {
-    source = "../../modules/network/tgw"
+# module "tgw" {
+#     source = "../../modules/network/tgw"
     
-    ## TGW Variables
-    tgw_vars = var.tgw_vars
+#     ## TGW Variables
+#     tgw_vars = var.tgw_vars
 
-    tgw_attach = {
-        hub_attachement = {
-            vpc_id = data.aws_vpc.hub_vpc.id
-            subnet_ids = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1]
-            destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
-        },
-        spoke_attachement = {
-            vpc_id = data.aws_vpc.spoke_vpc.id
-            subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
-            destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
-        }
-    }
-}
+#     tgw_attach = {
+#         hub_attachement = {
+#             vpc_id = data.aws_vpc.hub_vpc.id
+#             subnet_ids = [module.vpc.id_pub_hub_subnet_0, module.vpc.id_pub_hub_subnet_1]
+#             destination_cidr_block = data.aws_vpc.spoke_vpc.cidr_block
+#         },
+#         spoke_attachement = {
+#             vpc_id = data.aws_vpc.spoke_vpc.id
+#             subnet_ids = [module.vpc.id_priv_spoke_subnet_0]
+#             destination_cidr_block = data.aws_vpc.hub_vpc.cidr_block
+#         }
+#     }
+# }
 
 # ## Cognito user pool which saves users.
 # resource "aws_cognito_user_pool" "website_user_pool" {
