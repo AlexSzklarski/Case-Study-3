@@ -1,24 +1,6 @@
 ## Virtual Private Cloud (VPC) Variable Values
 vpc_vars = [
     {
-        name = "hub_vpc"
-        type = "hub"
-        cidr = "10.0.0.0/16"
-        azs = ["eu-central-1a", "eu-central-1b"]
-        
-        public_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
-        private_subnets = []
-        database_subnets = []
-        create_database_subnet_group = false
-
-        enable_vpn_gateway = true
-
-        enable_nat_gateway = false
-        single_nat_gateway = false
-
-        description = "Hub VPC allowing inbound via ALB and TGW."
-    },
-    {
         name = "spoke_vpc"
         type = "spoke"
         cidr = "10.1.0.0/16"
