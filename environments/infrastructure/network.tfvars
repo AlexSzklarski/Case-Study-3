@@ -20,48 +20,48 @@ vpc_vars = [
     }
 ]
 
-# ## Security Group Variable Values
-# hub_sg_vars = [
-#     {
-#         name = "alb-sg"
+## Security Group Variable Values
+hub_sg_vars = [
+    {
+        name = "alb-sg"
 
-#         ingress_with_cidr_blocks = [
-#             {
-#                 from_port = 80
-#                 to_port = 80
-#                 protocol = "tcp"
-#                 cidr_blocks = "0.0.0.0/0"
-#                 description = "Open port 80 for HTTP."
-#             },
-#             {
-#                 from_port = 443
-#                 to_port = 443
-#                 protocol = "tcp"
-#                 cidr_blocks = "0.0.0.0/0"
-#                 description = "Open port 443 for HTTPS."
-#             }
-#         ]
+        ingress_with_cidr_blocks = [
+            {
+                from_port = 80
+                to_port = 80
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 80 for HTTP."
+            },
+            {
+                from_port = 443
+                to_port = 443
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 443 for HTTPS."
+            }
+        ]
 
-#         egress_with_cidr_blocks = [
-#             {
-#                 from_port = 80
-#                 to_port = 80
-#                 protocol = "tcp"
-#                 cidr_blocks = "0.0.0.0/0"
-#                 description = "Open port 80 for HTTP."
-#             },
-#             {
-#                 from_port = 443
-#                 to_port = 443
-#                 protocol = "tcp"
-#                 cidr_blocks = "0.0.0.0/0"
-#                 description = "Open port 443 for HTTPS."
-#             }
-#         ]
+        egress_with_cidr_blocks = [
+            {
+                from_port = 80
+                to_port = 80
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 80 for HTTP."
+            },
+            {
+                from_port = 443
+                to_port = 443
+                protocol = "tcp"
+                cidr_blocks = "0.0.0.0/0"
+                description = "Open port 443 for HTTPS."
+            }
+        ]
 
-#         description = "Application Load Balancer ALB security group."
-#     }
-# ]
+        description = "Application Load Balancer ALB security group."
+    }
+]
 
 spoke_sg_vars = [
     {
@@ -217,25 +217,25 @@ spoke_sg_vars = [
     }
 ]
 
-# ## Application Load Balancer (ALB) Variable Values
-# alb_vars = [
-#     {
-#         name = "hub-alb"
+## Application Load Balancer (ALB) Variable Values
+alb_vars = [
+    {
+        name = "hub-alb"
 
-#         create_security_group = false
-#         enable_deletion_protection = false
+        create_security_group = false
+        enable_deletion_protection = false
 
-#         description = "Application Load Balancer ALB hosted on the hub VPC."
-#     }
-# ]
+        description = "Application Load Balancer ALB hosted on the hub VPC."
+    }
+]
 
-# ## Transit GateWay Variable Values
-# tgw_vars = [
-#     {
-#         name = "hub_spoke_tgw"
+## Transit GateWay Variable Values
+tgw_vars = [
+    {
+        name = "hub_spoke_tgw"
 
-#         share_tgw = false
+        share_tgw = false
         
-#         description = "Transit GateWay connecting the hub and spoke VPCs together."
-#     }
-# ]
+        description = "Transit GateWay connecting the hub and spoke VPCs together."
+    }
+]
