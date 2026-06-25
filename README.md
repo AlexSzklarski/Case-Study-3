@@ -20,7 +20,7 @@ This module consists of Okta users, groups, and group policies.
 
 ## Environments
 
-The `environments` folder is where each module gets its actual values. Rather than hardcoding values inside the modules themselves, the environment configurations pass in the required variables. This keeps the modules generic and reusable while the environment layer handles deployment values.
+The `environments` folder is where each module gets its actual values. Rather than hardcoding values inside the modules themselves, the environment folder passes the required variables. This keeps the modules generic and reusable while the environment layer handles deployment values.
 
 ---
 
